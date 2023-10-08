@@ -8,7 +8,7 @@ public class Creatures {
     private int nEvoLevel;
     private Reader CReader;
     private Creatures Creature;
-    Map<String, Creatures> map = new HashMap<>();
+    private Map<String, Creatures> map = new HashMap<>();
 
     public Creatures() throws IOException{
         this.CReader = new Reader(new FileReader("CreaturesList.txt"));
@@ -30,6 +30,17 @@ public class Creatures {
                 cFamily + ", " +
                 nEvoLevel +
                 '}';
+    }
+
+    public String randomCreature(Map<String, Creatures> mapCreatues){
+        Set<String> keys = mapCreatues.keySet();
+        String[] keysArray = keys.toArray(new String[0]);
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(keysArray.length);
+        String randomCreature = keysArray[randomIndex];
+
+        return randomCreature;
     }
 
 

@@ -12,21 +12,21 @@ public class Driver {
         System.out.println(Area.getDimensions()); 
         ^^^ used for testing Reader and Area classes
         */ 
-        String key = "";
-
-        key = CScanner.next();
 
         //CReader.creatureFileReader();
 
         map = Creature.getCreatureMap();
 
+        String randomCreature = Creature.randomCreature(map);
+
         // confirms that hashmap is filled up
         // System.out.println(map.entrySet());
 
-        char family = map.get(key).getFamily();
-        String type = map.get(key).getType();
-        int level = map.get(key).getLevel();
+        char family = map.get(randomCreature).getFamily();
+        String type = map.get(randomCreature).getType();
+        int level = map.get(randomCreature).getLevel();
 
+        System.out.println(randomCreature);
         System.out.println(family);
         System.out.println(type);
         System.out.println(level);
