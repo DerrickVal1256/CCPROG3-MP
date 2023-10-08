@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Reader {
     private FileReader CReader;
-    private Map<String, ArrayList<String>> strList;
-    private Creatures Creature;
+    private Map<String, Creatures> mapList;
+    private Creatures CCreature;
 
     public Reader(FileReader CReader) throws IOException {
         this.CReader = CReader;
@@ -32,20 +32,22 @@ public class Reader {
         return nList;
     }
 
-    public Map<String, Creatures> creatureFileReader() throws IOException{
-        Map<String, Creatures> strList = new HashMap<String, Creatures>();
+    public void creatureFileReader() throws IOException{
+        Map<String, Creatures> mapList = new HashMap<String, Creatures>();
         BufferedReader CBufferedReader = new BufferedReader(CReader);
         String strLine = "";
 
         while((strLine = CBufferedReader.readLine()) != null){
-            strList.put(strLine, Creature = new Creatures());
-            Creature.setType(CBufferedReader.readLine());
-            Creature.setFamily(CBufferedReader.readLine().charAt(0));
-            Creature.setLevel(Integer.parseInt(CBufferedReader.readLine()));
+            mapList.put(strLine, this.CCreature = new Creatures());
+            this.CCreature.setType(CBufferedReader.readLine());
+            this.CCreature.setFamily(CBufferedReader.readLine().charAt(0));
+            this.CCreature.setLevel(Integer.parseInt(CBufferedReader.readLine()));
         }
-        return strList;
+        this.mapList = mapList;
     }
 
-   
+    public Map<String, Creatures> getMap(){
+        return this.mapList;
+    }
 
 }

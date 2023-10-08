@@ -6,30 +6,33 @@ public class Creatures {
     private String strType;
     private char cFamily;
     private int nEvoLevel;
-    private FileReader CReader;
+    private Reader CReader;
     private Creatures Creature;
     Map<String, Creatures> map = new HashMap<>();
 
     public Creatures() throws IOException{
-        // this.CReader = new Reader(new FileReader("CreaturesList.txt"));
+        this.CReader = new Reader(new FileReader("CreaturesList.txt"));
     }
 
-    public void loadCreatures() throws IOException{
-    //    CReader.creatureFileReader().forEach((key, value) -> System.out.println(key + " = " + getType() + getFamily() + getLevel()));
-    //    this.strName = ;
-    //    this.strType = ;
-    //    this.cFamily = ;
-    //    this.nEvoLevel = ;
-        for (Creatures Creature : this.map.values()) {
-            System.out.println(Creature);
-        }
-        
-    }
+    public Map<String, Creatures> getCreatureMap() throws IOException{
+        CReader.creatureFileReader();
+        this.map = CReader.getMap();
 
-    public Map<String, Creatures> getMap(){
         return this.map;
     }
-    
+
+    // just for checking values in the HashMap
+    // debugger method
+    @Override
+    public String toString() {
+        return  '{' +
+                strType + ", " +
+                cFamily + ", " +
+                nEvoLevel +
+                '}';
+    }
+
+
     public void setType(String strType){
         this.strType = strType;
     }
@@ -45,10 +48,11 @@ public class Creatures {
     public String getType(){
         return this.strType;
     }
-    
+
     public char getFamily(){
         return this.cFamily;
     }
+
      public int getLevel(){
         return this.nEvoLevel;
     }

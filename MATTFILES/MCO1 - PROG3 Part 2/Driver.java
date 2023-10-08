@@ -5,13 +5,32 @@ public class Driver {
     public static void main(String args[]) throws IOException{
         Area Area = new Area(); // will get this from user chosen area
         Creatures Creature = new Creatures();
+        Map<String, Creatures> map = new HashMap<>();
+        Scanner CScanner = new Scanner(System.in);
         /* 
         Area.setDimensions(2);
         System.out.println(Area.getDimensions()); 
         ^^^ used for testing Reader and Area classes
         */ 
+        String key = "";
 
-       Creature.loadCreatures();
+        key = CScanner.next();
 
+        //CReader.creatureFileReader();
+
+        map = Creature.getCreatureMap();
+
+        // confirms that hashmap is filled up
+        // System.out.println(map.entrySet());
+
+        char family = map.get(key).getFamily();
+        String type = map.get(key).getType();
+        int level = map.get(key).getLevel();
+
+        System.out.println(family);
+        System.out.println(type);
+        System.out.println(level);
+
+        CScanner.close();
     }
 }
