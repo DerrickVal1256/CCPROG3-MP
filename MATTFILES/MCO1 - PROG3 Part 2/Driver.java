@@ -3,21 +3,19 @@ import java.util.*;
 
 public class Driver {
     public static void main(String args[]) throws IOException{
-        Area Area = new Area(); // will get this from user chosen area
+        Area Area = new Area("Area 2"); // will get this from user chosen area
         Creatures Creature = new Creatures();
         Map<String, Creatures> map = new HashMap<>();
         Scanner CScanner = new Scanner(System.in);
-        /* 
-        Area.setDimensions(2);
-        System.out.println(Area.getDimensions()); 
-        ^^^ used for testing Reader and Area classes
-        */ 
 
+        
+        // System.out.println(Area.getNumArea());
+        // Area.printArea();
         //CReader.creatureFileReader();
 
         map = Creature.getCreatureMap();
 
-        String randomCreature = Creature.randomCreature(map);
+        String randomCreature = Creature.randomCreature();
 
         // confirms that hashmap is filled up
         // System.out.println(map.entrySet());

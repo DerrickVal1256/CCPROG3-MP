@@ -7,8 +7,7 @@ public class Creatures {
     private char cFamily;
     private int nEvoLevel;
     private Reader CReader;
-    private Creatures Creature;
-    private Map<String, Creatures> map = new HashMap<>();
+    private Map<String, Creatures> mapCreatues = new HashMap<>();
 
     public Creatures() throws IOException{
         this.CReader = new Reader(new FileReader("CreaturesList.txt"));
@@ -16,9 +15,9 @@ public class Creatures {
 
     public Map<String, Creatures> getCreatureMap() throws IOException{
         CReader.creatureFileReader();
-        this.map = CReader.getMap();
+        this.mapCreatues = CReader.getMap();
 
-        return this.map;
+        return this.mapCreatues;
     }
 
     // just for checking values in the HashMap
@@ -32,7 +31,7 @@ public class Creatures {
                 '}';
     }
 
-    public String randomCreature(Map<String, Creatures> mapCreatues){
+    public String randomCreature(){
         Set<String> keys = mapCreatues.keySet();
         String[] keysArray = keys.toArray(new String[0]);
 
@@ -42,7 +41,6 @@ public class Creatures {
 
         return randomCreature;
     }
-
 
     public void setType(String strType){
         this.strType = strType;

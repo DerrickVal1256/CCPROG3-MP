@@ -10,7 +10,7 @@ public class Reader {
         this.CReader = CReader;
     }
 
-    public ArrayList<Integer> dimensionFileReader(int nKey) throws IOException{
+    public ArrayList<Integer> dimensionFileReader(String strKey) throws IOException{
         ArrayList<Integer> nList = new ArrayList<>();
         BufferedReader CBufferedReader = new BufferedReader(CReader);
         String strLine = "";
@@ -18,7 +18,7 @@ public class Reader {
         String[] strNumberStrings = {"", ""};
 
         while((strLine = CBufferedReader.readLine()) != null){
-            if(strLine.contains(String.valueOf(nKey))){
+            if(strLine.equals(strKey)){
                 strNextLine = CBufferedReader.readLine();
                 if(strNextLine != null){
                     strNumberStrings = strNextLine.split(" ");
@@ -31,6 +31,8 @@ public class Reader {
         CBufferedReader.close();
         return nList;
     }
+
+    //contains(String.valueOf(nKey))
 
     public void creatureFileReader() throws IOException{
         Map<String, Creatures> mapList = new HashMap<String, Creatures>();
