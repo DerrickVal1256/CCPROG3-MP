@@ -3,22 +3,23 @@ import java.util.*;
 
 public class Area {
     private ArrayList<Integer> nDimensions;
-    private Reader CReader;
-    private Creatures CCreature;
+    private Reader CAreaReader;
+    private Reader CCreatureReader;
+    private Creatures CCreatures;
     private String strNumArea;
     private char[][] cBoard;
     private int nPlayerRow;
     private int nPlayerCol;
 
     public Area(String strNumArea) throws IOException{
-        this.CReader = new Reader(new FileReader("AreaDimensions.txt"));
+        this.CAreaReader = new Reader(new FileReader("AreaDimensions.txt"));
+        this.CCreatures = new Creatures(this.CCreatureReader);
         setNumArea(strNumArea);
         setDimensions();
         this.cBoard = new char[nDimensions.get(0)][nDimensions.get(1)];
         this.nPlayerRow = 0;
         this.nPlayerCol = 0;
         initializeArea();
-
     }
 
     private void initializeArea() {
@@ -53,48 +54,69 @@ public class Area {
         System.out.println();
     }
 
-    public void movePlayer(String strMovement) {
+    public void movePlayer(int nPlayerMove) throws IOException{
         int nRow = nPlayerRow;
         int nCol = nPlayerCol;
+        String randomCreature;
 
-        switch(strMovement){
-            case "UP":
+        switch(nPlayerMove){
+            case 1: // UP
                 nRow--;
                 if(nRow >= 0) {
                     cBoard[nPlayerRow][nPlayerCol] = '.';
                     nPlayerRow = nRow;
                     cBoard[nPlayerRow][nPlayerCol] = 'P';
+                    if(creatureSpawning()) {
+                        randomCreature = CCreatures.randomCreature();
+                        System.out.println("A wild " + randomCreature + " has appeared!");
+                        // Start battle phase
+                    }
                 } else {
                     System.out.println("-- Invalid Move! --");
                 }
 
                 break;
-            case "DOWN":
+            case 2: // DOWN
                 nRow++;
                 if(nRow < nDimensions.get(0)) {
                     cBoard[nPlayerRow][nPlayerCol] = '.';
                     nPlayerRow = nRow;
                     cBoard[nPlayerRow][nPlayerCol] = 'P';
+                    if(creatureSpawning()) {
+                        randomCreature = CCreatures.randomCreature();
+                        System.out.println("A wild " + randomCreature + " has appeared!");
+                        // Start battle phase
+                    }
                 } else {
                     System.out.println("-- Invalid Move! --");
                 }
                 break;
-            case "LEFT":
+            case 3: // LEFT
                 nCol--;
                 if(nCol >= 0) {
                     cBoard[nPlayerRow][nPlayerCol] = '.';
                     nPlayerCol = nCol;
                     cBoard[nPlayerRow][nPlayerCol] = 'P';
+                    if(creatureSpawning()) {
+                        randomCreature = CCreatures.randomCreature();
+                        System.out.println("A wild " + randomCreature + " has appeared!");
+                        // Start battle phase
+                    }
                 } else {
                     System.out.println("-- Invalid Move! --");
                 }
                 break;
-            case "RIGHT":
+            case 4: // RIGHT
                 nCol++;
                 if(nCol < nDimensions.get(1)) {
                     cBoard[nPlayerRow][nPlayerCol] = '.';
                     nPlayerCol = nCol;
                     cBoard[nPlayerRow][nPlayerCol] = 'P';
+                    if(creatureSpawning()) {
+                        randomCreature = CCreatures.randomCreature();
+                        System.out.println("A wild " + randomCreature + " has appeared!");
+                        // Start battle phase
+                    }
                 } else {
                     System.out.println("-- Invalid Move! --");
                 }
@@ -102,10 +124,9 @@ public class Area {
         }
     }
 
-    private boolean creatureSpawning() {
+    public boolean creatureSpawning() {
         Random CRandom = new Random();
-        int nRandomNum = CRandom.nextInt(10);
-
+        int nRandomNum = CRandom.nextInt(10) + 1;
         if(nRandomNum < 4)
             return true;
         return false;
@@ -120,7 +141,7 @@ public class Area {
     }
 
     public void setDimensions() throws IOException{
-        this.nDimensions = CReader.dimensionFileReader(this.strNumArea);
+        this.nDimensions = CAreaReader.dimensionFileReader(this.strNumArea);
     }
 
     public ArrayList<Integer> getDimensions(){
