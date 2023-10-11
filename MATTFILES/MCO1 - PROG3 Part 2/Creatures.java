@@ -6,15 +6,16 @@ public class Creatures {
     private String strType;
     private char cFamily;
     private int nEvoLevel;
+    private boolean bIsActive;
     private Reader CReader;
-    private Map<String, Creatures> mapCreatues;
+    private Map<String, Creatures> mapCreatures;
     private String[] strKeys;
 
     public Creatures(Reader CReader) throws IOException{
         this.CReader = new Reader(new FileReader("CreaturesList.txt"));
         setMapCreatures();
         Set<String> mapKeys = new HashSet<String>();
-        mapKeys = mapCreatues.keySet();
+        mapKeys = mapCreatures.keySet();
         this.strKeys = mapKeys.toArray(new String[0]);
     }
 
@@ -23,11 +24,12 @@ public class Creatures {
         this.strType = "";
         this.cFamily = ' ';
         this.nEvoLevel = 0;
+        this.bIsActive = false;
     }
 
 
     public Map<String, Creatures> getCreatureMap() throws IOException{
-        return this.mapCreatues;
+        return this.mapCreatures;
     }
 
     public String randomCreature() throws IOException{
@@ -59,7 +61,11 @@ public class Creatures {
     }
 
     public void setMapCreatures() throws IOException{
-        this.mapCreatues = this.CReader.creatureFileReader();
+        this.mapCreatures = this.CReader.creatureFileReader();
+    }
+
+    public void setActive(boolean bIsActive){
+        this.bIsActive = bIsActive;
     }
 
     public String getName() {
@@ -76,6 +82,10 @@ public class Creatures {
 
      public int getLevel(){
         return this.nEvoLevel;
+    }
+
+    public boolean getActive(){
+        return this.bIsActive;
     }
 
         // just for checking values in the HashMap
