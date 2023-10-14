@@ -30,7 +30,7 @@ public class Inventory {
                 }
             }
         } else {
-            System.out.println("Invalid index: " + input);
+            System.out.println("\t\t\tInvalid index: " + input);
         }
     }
 
@@ -40,6 +40,22 @@ public class Inventory {
                 return CCreature;
         }
         return null;
+    }
+
+    public boolean swapCreatures() {
+        Scanner CScanner = new Scanner(System.in);
+        printInventory();
+        System.out.println();
+        System.out.print("\t\t\tSelect your Creature: ");
+        int nSwapTo = CScanner.nextInt() - 1;
+        if(nSwapTo > aInventoryList.size() || nSwapTo < 0){
+            System.out.println("\t\t\t-- Invalid Index! -- ");
+        } else {
+            activeCreature(nSwapTo);
+            System.out.println("\n\t\t\t" + getActive().getName() + " is now active!\n");
+            return true;
+        }
+        return false;
     }
 
     public void printInventory(){

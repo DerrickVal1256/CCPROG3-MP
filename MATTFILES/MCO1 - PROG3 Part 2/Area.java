@@ -11,6 +11,7 @@ public class Area {
     private int nPlayerRow;
     private int nPlayerCol;
     private Display CDisplay;
+    private Sound CSound;
 
     public Area(String strNumArea) throws IOException{
         this.CAreaReader = new Reader(new FileReader("AreaDimensions.txt"));
@@ -22,6 +23,7 @@ public class Area {
         this.nPlayerCol = 0;
         initializeArea();
         this.CDisplay = new Display();
+        this.CSound = new Sound();
     }
 
     private void initializeArea() {
@@ -35,14 +37,14 @@ public class Area {
 
     public void printArea() {
         // Print the top border
-        System.out.print("\t\t\t");
+        System.out.print("\t\t\t    ");
         for(int i = 0; i < cBoard[0].length + 2; i++) {
             System.out.print("- ");
         }
         System.out.println();
 
         // Print the side borders
-        System.out.print("\t\t\t");
+        System.out.print("\t\t\t    ");
         for(int i = 0; i < cBoard.length; i++) {
             System.out.print("| ");
             for(int j = 0; j < cBoard[i].length; j++) {
@@ -50,7 +52,7 @@ public class Area {
             }
             System.out.println("|");
         }
-        System.out.print("\t\t\t");
+        System.out.print("\t\t\t    ");
         // Print the bottom border
         for(int i = 0; i < cBoard[0].length + 2; i++) {
             System.out.print("- ");
@@ -125,6 +127,15 @@ public class Area {
                     System.out.println("\t\t\t-- Invalid Move! --");
                 }
                 break;
+            case 5: // LEAVE
+                cBoard[nPlayerRow][nPlayerCol] = '.';
+                nPlayerCol = 0;
+                nPlayerRow = 0;
+                cBoard[nPlayerRow][nPlayerCol] = 'P';
+                break;
+            default: // OUT OF BOUNDS
+                System.out.println("\t\t\t-- Input out of bounds! -- ");
+                break;
         }
     }
 
@@ -143,10 +154,17 @@ public class Area {
         boolean bBattleEnded = false;
         boolean bCaught = false;
 
-        do {
-            System.out.println("\n\t\t\t" + strCreature);
-            System.out.println("\t\t\tHP:" + nHP);
-            System.out.println("\t\t\tType: " + CEnemy.getType() + "\n");
+        this.CSound.play("Trainer_Music.wav");
+        do 
+        {
+            System.out.println("\n\t\t\tName: " + strCreature);
+            System.out.printf("\n\t\t\tHP: ");
+            printHPBar(nHP);
+            System.out.println("\t\t\tType: " + CEnemy.getType());
+            System.out.println("\t\t\tLevel: "+ CEnemy.getLevel() + "\n");
+            System.out.println("\n\t\t\tActive Creature: " + CPlayerInventory.getActive().getName());
+            System.out.println("\t\t\tType: "+ CPlayerInventory.getActive().getType());
+            System.out.println("\t\t\tLevel: "+ CPlayerInventory.getActive().getLevel() + "\n");
             this.CDisplay.battleMenu();
             System.out.print("\n\t\t\tInput: ");
             nChoice = CScanner.nextInt();
@@ -166,23 +184,22 @@ public class Area {
                     break;
                 case 2: // Swap
                     CPlayerInventory.printInventory();
-                    do{
-                        System.out.print("\t\t\tInput: ");
-                        nSwapTo = CScanner.nextInt() - 1;
-                        if(nSwapTo > CPlayerInventory.getInventory().size()){
-                            System.out.println("\t\t\t-- Invalid Index! -- ");
-                        } else {
-                            CPlayerInventory.activeCreature(nSwapTo);
-                            System.out.println("\n\t\t\t" + CPlayerInventory.getActive().getName() + " is now active!");
-                        }
-                    } while(nSwapTo > CPlayerInventory.getInventory().size());
+                    while(!CPlayerInventory.swapCreatures());
                     
                     break;
                 case 3: // Catch
                     dCatchRate = (40 + 50 - nHP) * .100;
                     nRandomNum = CRandom.nextInt(10) + 1;
                     if(nRandomNum < dCatchRate) { // If random number is under the catch rate, then add the enemy creature to inventory
-                        System.out.println("\n\t\t\t-- " + strCreature + " has been captured and added to your inventory! --");
+                        this.CSound.stop();
+                        try {
+                            this.CSound.play("successful_catch.wav");
+                            Thread.sleep(1900);
+                            System.out.println("\n\t-- " + strCreature + " has been captured and added to your inventory! --\n");
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         bCaught = true;
                         CPlayerInventory.addCreature(CEnemy);
                     } else {
@@ -192,9 +209,10 @@ public class Area {
                     break;
                 case 4: // Run Away
                     System.out.println("\t\t\t-- " + CPlayerInventory.getActive().getName() + " has fled! --");
+                    bBattleEnded = true;
                     break;
                 default:
-                    System.out.println("\t\t\t-- Invalid Move! --");
+                    System.out.println("\t\t\t-- Invalid Move! --\n");
             }
 
             if(nActions == 3 && !bCaught) {
@@ -207,6 +225,7 @@ public class Area {
                 bBattleEnded = true;
             }
         } while(!bBattleEnded);
+        CSound.stop();
     }
 
     private boolean isEnemyWeaker(String strPlayerType, String strEnemyType) {
@@ -230,6 +249,17 @@ public class Area {
         if(nRandomNum < 4)
             return true;
         return false;
+    }
+
+    private void printHPBar(int nHP) {
+        int i = 0;
+
+        while(i < nHP) {
+            System.out.print("|");
+            i += 10;
+        }
+
+        System.out.println();
     }
 
     public void setNumArea(String strNumArea){

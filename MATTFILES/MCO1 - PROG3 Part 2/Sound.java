@@ -6,21 +6,21 @@ public class Sound {
     private URL CUrl;
     private Clip CClip;
 
-    public Sound(String strRequestedSound) {
-        CUrl = this.getClass().getResource(strRequestedSound);
-        if(CUrl != null) {
+    public void play(String strRequestedSound){
+        this.CUrl = this.getClass().getResource(strRequestedSound);
+        if(this.CUrl != null) {
             try {
                AudioInputStream audioInput = AudioSystem.getAudioInputStream(CUrl);
-            CClip = AudioSystem.getClip();
-            CClip.open(audioInput); 
+                this.CClip = AudioSystem.getClip();
+                this.CClip.open(audioInput); 
             } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
                 e.printStackTrace();
             }
         }
+        this.CClip.start(); 
     }
 
-    public void play(){
-        this.CClip.setFramePosition(0);
-        this.CClip.start();
+    public void stop(){
+        this.CClip.stop();
     }
 }
