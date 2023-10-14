@@ -6,7 +6,8 @@ public class Creatures {
     private String strType;
     private char cFamily;
     private int nEvoLevel;
-    private boolean bIsActive;
+    private Creatures CCreature;
+    private boolean bState;
     private Reader CReader;
     private Map<String, Creatures> mapCreatures;
     private String[] strKeys;
@@ -24,9 +25,8 @@ public class Creatures {
         this.strType = "";
         this.cFamily = ' ';
         this.nEvoLevel = 0;
-        this.bIsActive = false;
+        this.bState = false;
     }
-
 
     public Map<String, Creatures> getCreatureMap() throws IOException{
         return this.mapCreatures;
@@ -36,9 +36,6 @@ public class Creatures {
         Random random = new Random();
         int randomIndex = random.nextInt(strKeys.length);
         System.out.println(randomIndex);
-        // if(randomIndex > strKeys.length) {
-        //     randomIndex -= strKeys.length;
-        // }
         String randomCreature = strKeys[randomIndex];
 
         return randomCreature;
@@ -64,8 +61,8 @@ public class Creatures {
         this.mapCreatures = this.CReader.creatureFileReader();
     }
 
-    public void setActive(boolean bIsActive){
-        this.bIsActive = bIsActive;
+    public void setStatus(boolean bState){
+        this.bState = bState;
     }
 
     public String getName() {
@@ -84,8 +81,8 @@ public class Creatures {
         return this.nEvoLevel;
     }
 
-    public boolean getActive(){
-        return this.bIsActive;
+    public boolean getState(){
+        return this.bState;
     }
 
         // just for checking values in the HashMap
@@ -93,8 +90,8 @@ public class Creatures {
     @Override
     public String toString() {
         return  '{' +
+                strName + ", " +
                 strType + ", " +
-                cFamily + ", " +
                 nEvoLevel +
                 '}';
     }

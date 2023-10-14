@@ -8,9 +8,9 @@ public class Display {
     }
 
     public void battleMenu(){
-        System.out.println("[1] Attack");
-        System.out.println("[2] Swap");
-        System.out.println("[3] Catch");
+        System.out.println("\n\t\t\t[1] Attack");
+        System.out.println("\t\t\t[2] Swap");
+        System.out.println("\t\t\t[3] Catch");
+        System.out.println("\t\t\t[4] Run Away");
     }
-
 }

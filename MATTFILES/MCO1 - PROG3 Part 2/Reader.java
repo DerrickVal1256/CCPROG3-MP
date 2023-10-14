@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Reader {
     private FileReader CReader;
-    // private Creatures CCreature;
 
     public Reader(FileReader CReader) throws IOException {
         this.CReader = CReader;
