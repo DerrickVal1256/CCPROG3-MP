@@ -10,6 +10,7 @@ public class Area {
     private char[][] cBoard;
     private int nPlayerRow;
     private int nPlayerCol;
+    private Display CDisplay;
 
     public Area(String strNumArea) throws IOException{
         this.CAreaReader = new Reader(new FileReader("AreaDimensions.txt"));
@@ -20,6 +21,7 @@ public class Area {
         this.nPlayerRow = 0;
         this.nPlayerCol = 0;
         initializeArea();
+        this.CDisplay = new Display();
     }
 
     private void initializeArea() {
@@ -33,12 +35,14 @@ public class Area {
 
     public void printArea() {
         // Print the top border
+        System.out.print("\t\t\t");
         for(int i = 0; i < cBoard[0].length + 2; i++) {
             System.out.print("- ");
         }
         System.out.println();
 
         // Print the side borders
+        System.out.print("\t\t\t");
         for(int i = 0; i < cBoard.length; i++) {
             System.out.print("| ");
             for(int j = 0; j < cBoard[i].length; j++) {
@@ -46,7 +50,7 @@ public class Area {
             }
             System.out.println("|");
         }
-        
+        System.out.print("\t\t\t");
         // Print the bottom border
         for(int i = 0; i < cBoard[0].length + 2; i++) {
             System.out.print("- ");
@@ -54,7 +58,7 @@ public class Area {
         System.out.println();
     }
 
-    public void movePlayer(int nPlayerMove) throws IOException{
+    public void movePlayer(Inventory CPlayerInventory, int nPlayerMove) throws IOException{
         int nRow = nPlayerRow;
         int nCol = nPlayerCol;
         String randomCreature;
@@ -68,11 +72,11 @@ public class Area {
                     cBoard[nPlayerRow][nPlayerCol] = 'P';
                     if(creatureSpawning()) {
                         randomCreature = CCreatures.randomCreature();
-                        System.out.println("A wild " + randomCreature + " has appeared!");
-                        // Start battle phase
+                        System.out.println("\t\t\tA wild " + randomCreature + " has appeared!");
+                        battlePhase(CPlayerInventory, randomCreature);
                     }
                 } else {
-                    System.out.println("-- Invalid Move! --");
+                    System.out.println("\t\t\t-- Invalid Move! --");
                 }
 
                 break;
@@ -84,11 +88,11 @@ public class Area {
                     cBoard[nPlayerRow][nPlayerCol] = 'P';
                     if(creatureSpawning()) {
                         randomCreature = CCreatures.randomCreature();
-                        System.out.println("A wild " + randomCreature + " has appeared!");
-                        // Start battle phase
+                        System.out.println("\t\t\tA wild " + randomCreature + " has appeared!");
+                        battlePhase(CPlayerInventory, randomCreature);
                     }
                 } else {
-                    System.out.println("-- Invalid Move! --");
+                    System.out.println("\t\t\t-- Invalid Move! --");
                 }
                 break;
             case 3: // LEFT
@@ -99,11 +103,11 @@ public class Area {
                     cBoard[nPlayerRow][nPlayerCol] = 'P';
                     if(creatureSpawning()) {
                         randomCreature = CCreatures.randomCreature();
-                        System.out.println("A wild " + randomCreature + " has appeared!");
-                        // Start battle phase
+                        System.out.println("\t\t\tA wild " + randomCreature + " has appeared!");
+                        battlePhase(CPlayerInventory, randomCreature);
                     }
                 } else {
-                    System.out.println("-- Invalid Move! --");
+                    System.out.println("\t\t\t-- Invalid Move! --");
                 }
                 break;
             case 4: // RIGHT
@@ -114,17 +118,113 @@ public class Area {
                     cBoard[nPlayerRow][nPlayerCol] = 'P';
                     if(creatureSpawning()) {
                         randomCreature = CCreatures.randomCreature();
-                        System.out.println("A wild " + randomCreature + " has appeared!");
-                        // Start battle phase
+                        System.out.println("\t\t\tA wild " + randomCreature + " has appeared!");
+                        battlePhase(CPlayerInventory, randomCreature);
                     }
                 } else {
-                    System.out.println("-- Invalid Move! --");
+                    System.out.println("\t\t\t-- Invalid Move! --");
                 }
                 break;
         }
     }
 
-    public boolean creatureSpawning() {
+    public void battlePhase(Inventory CPlayerInventory, String strCreature) throws IOException{
+        Creatures CEnemy = this.CCreatures.getCreatureMap().get(strCreature);
+        Creatures CPlayer = CPlayerInventory.getActive();
+        Scanner CScanner = new Scanner(System.in);
+        Random CRandom = new Random();
+        int nSwapTo = 0;
+        int nActions = 0;
+        int nRandomNum = 0;
+        int nChoice = 0;
+        int nDamage = 0;
+        int nHP = 50;
+        double dCatchRate = 0.0;
+        boolean bBattleEnded = false;
+        boolean bCaught = false;
+
+        do {
+            System.out.println("\n\t\t\t" + strCreature);
+            System.out.println("\t\t\tHP:" + nHP);
+            System.out.println("\t\t\tType: " + CEnemy.getType() + "\n");
+            this.CDisplay.battleMenu();
+            System.out.print("\n\t\t\tInput: ");
+            nChoice = CScanner.nextInt();
+            switch(nChoice) {
+                case 1: // Attack
+                    nRandomNum = CRandom.nextInt(10) + 1;
+                    if(isEnemyWeaker(CPlayer.getType(), CEnemy.getType())) {
+                        nDamage = (int)Math.round(nRandomNum * CPlayer.getLevel() * 1.5);
+                        nHP -= nDamage;
+                    } else {
+                        nDamage = nRandomNum * CPlayer.getLevel();
+                        nHP -= nDamage;
+                    }
+
+                    System.out.println("\n\t\t\t" + strCreature + " was hit for " + nDamage + " damage!");
+                    nActions++;
+                    break;
+                case 2: // Swap
+                    CPlayerInventory.printInventory();
+                    do{
+                        System.out.print("\t\t\tInput: ");
+                        nSwapTo = CScanner.nextInt() - 1;
+                        if(nSwapTo > CPlayerInventory.getInventory().size()){
+                            System.out.println("\t\t\t-- Invalid Index! -- ");
+                        } else {
+                            CPlayerInventory.activeCreature(nSwapTo);
+                            System.out.println("\n\t\t\t" + CPlayerInventory.getActive().getName() + " is now active!");
+                        }
+                    } while(nSwapTo > CPlayerInventory.getInventory().size());
+                    
+                    break;
+                case 3: // Catch
+                    dCatchRate = (40 + 50 - nHP) * .100;
+                    nRandomNum = CRandom.nextInt(10) + 1;
+                    if(nRandomNum < dCatchRate) { // If random number is under the catch rate, then add the enemy creature to inventory
+                        System.out.println("\n\t\t\t-- " + strCreature + " has been captured and added to your inventory! --");
+                        bCaught = true;
+                        CPlayerInventory.addCreature(CEnemy);
+                    } else {
+                        System.out.println("\n\t\t\t-- " + "Failed to capture " + strCreature + " --");
+                    }
+                    nActions++;
+                    break;
+                case 4: // Run Away
+                    System.out.println("\t\t\t-- " + CPlayerInventory.getActive().getName() + " has fled! --");
+                    break;
+                default:
+                    System.out.println("\t\t\t-- Invalid Move! --");
+            }
+
+            if(nActions == 3 && !bCaught) {
+                System.out.println("\n\t\t\t-- " + strCreature + " has fled! --\n");
+                bBattleEnded = true;
+            } else if(nHP <= 0) {
+                System.out.println("\t\t\t-- " + strCreature + " has died! --");
+                bBattleEnded = true;
+            } else if(bCaught) {
+                bBattleEnded = true;
+            }
+        } while(!bBattleEnded);
+    }
+
+    private boolean isEnemyWeaker(String strPlayerType, String strEnemyType) {
+        switch(strPlayerType) {
+            case "Fire":
+                if(strEnemyType.equals("Grass"))
+                    return true;
+            case "Grass":
+                if(strEnemyType.equals("Water")) 
+                    return true;
+            case "Water":
+                if(strEnemyType.equals("Fire")) 
+                    return true;
+        }
+        return false;
+    }
+
+    private boolean creatureSpawning() {
         Random CRandom = new Random();
         int nRandomNum = CRandom.nextInt(10) + 1;
         if(nRandomNum < 4)
@@ -149,4 +249,3 @@ public class Area {
     }
     
 }
-

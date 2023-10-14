@@ -44,7 +44,6 @@ public class Reader {
             CCreature.setFamily(CBufferedReader.readLine().charAt(0));
             CCreature.setLevel(Integer.parseInt(CBufferedReader.readLine()));
         }
-        //CBufferedReader.close();
         return mapList;
     }
 }
