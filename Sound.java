@@ -20,6 +20,10 @@ public class Sound {
         this.CClip.start(); 
     }
 
+    public Clip getClip() {
+        return this.CClip;
+    }
+
     public void stop(){
         this.CClip.stop();
     }

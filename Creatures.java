@@ -6,18 +6,17 @@ public class Creatures {
     private String strType;
     private char cFamily;
     private int nEvoLevel;
-    private Creatures CCreature;
     private boolean bState;
     private Reader CReader;
     private Map<String, Creatures> mapCreatures;
-    private String[] strKeys;
+    // private String[] strKeys;
 
     public Creatures(Reader CReader) throws IOException{
         this.CReader = new Reader(new FileReader("CreaturesList.txt"));
         setMapCreatures();
-        Set<String> mapKeys = new HashSet<String>();
-        mapKeys = mapCreatures.keySet();
-        this.strKeys = mapKeys.toArray(new String[0]);
+        // Set<String> mapKeys = new HashSet<String>();
+        // mapKeys = mapCreatures.keySet();
+        // this.strKeys = mapKeys.toArray(new String[0]);
     }
 
     public Creatures() {
@@ -32,10 +31,25 @@ public class Creatures {
         return this.mapCreatures;
     }
 
-    public String randomCreature() throws IOException{
+    public String randomCreature(int nAreaNum) throws IOException{
         Random random = new Random();
-        int randomIndex = random.nextInt(strKeys.length);
-        System.out.println(randomIndex);
+        Set<String> mapKeys = new HashSet<String>();
+        int randomIndex = 0;
+        /*
+         * this is used to generate a list of creatures based on the area number 
+         */
+        Iterator<Map.Entry<String, Creatures>> CIterator = this.mapCreatures.entrySet().iterator();
+        while(CIterator.hasNext()) {
+            Map.Entry<String, Creatures> CEntry = CIterator.next();
+            Creatures CCreature = CEntry.getValue();
+            if(CCreature.getLevel() <= nAreaNum) {
+                mapKeys.add(CCreature.getName());
+            }
+        }
+
+        String[] strKeys = mapKeys.toArray(new String[0]);
+
+        randomIndex = random.nextInt(strKeys.length);
         String randomCreature = strKeys[randomIndex];
 
         return randomCreature;
@@ -85,7 +99,6 @@ public class Creatures {
         return this.bState;
     }
 
-        // just for checking values in the HashMap
     // debugger method
     @Override
     public String toString() {

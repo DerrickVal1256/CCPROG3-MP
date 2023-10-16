@@ -3,12 +3,13 @@ import java.util.*;
 
 public class Reader {
     private FileReader CReader;
+    // private Creatures CCreature;
 
     public Reader(FileReader CReader) throws IOException {
         this.CReader = CReader;
     }
 
-    public ArrayList<Integer> fileReader(int nKey) throws IOException{
+    public ArrayList<Integer> dimensionFileReader(String strKey) throws IOException{
         ArrayList<Integer> nList = new ArrayList<>();
         BufferedReader CBufferedReader = new BufferedReader(CReader);
         String strLine = "";
@@ -16,7 +17,7 @@ public class Reader {
         String[] strNumberStrings = {"", ""};
 
         while((strLine = CBufferedReader.readLine()) != null){
-            if(strLine.contains(String.valueOf(nKey))){
+            if(strLine.equals(strKey)){
                 strNextLine = CBufferedReader.readLine();
                 if(strNextLine != null){
                     strNumberStrings = strNextLine.split(" ");
@@ -28,5 +29,21 @@ public class Reader {
         }
         CBufferedReader.close();
         return nList;
+    }
+
+    public Map<String, Creatures> creatureFileReader() throws IOException{
+        Map<String, Creatures> mapList = new HashMap<String, Creatures>();
+        BufferedReader CBufferedReader = new BufferedReader(CReader);
+        Creatures CCreature;
+        String strLine = "";
+
+        while((strLine = CBufferedReader.readLine()) != null){
+            mapList.put(strLine, CCreature = new Creatures());
+            CCreature.setName(strLine);
+            CCreature.setType(CBufferedReader.readLine());
+            CCreature.setFamily(CBufferedReader.readLine().charAt(0));
+            CCreature.setLevel(Integer.parseInt(CBufferedReader.readLine()));
+        }
+        return mapList;
     }
 }

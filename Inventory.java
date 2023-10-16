@@ -60,6 +60,7 @@ public class Inventory {
 
     public void printInventory(){
         int i = 1;
+        sortInventory();
         System.out.println("\n\t\t\t\t     Inventory\n");
         System.out.println("\t\t\t+----+------------+-------+-------+");
         System.out.printf("\t\t\t| %-3s| %-10s | %-5s | %-5s |\n", "No.", "   Name", "Type", "Level");
@@ -72,6 +73,11 @@ public class Inventory {
             }
         }
         System.out.println("\t\t\t+----+------------+-------+-------+");
+    }
+
+    private void sortInventory() {
+        Comparator<Creatures> CCreaturesComparator = Comparator.comparing(Creatures::getLevel).thenComparing(Creatures::getType).thenComparing(Creatures::getName);
+        Collections.sort(this.aInventoryList, CCreaturesComparator);
     }
 
     public ArrayList<Creatures> getInventory(){
