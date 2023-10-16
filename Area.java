@@ -1,6 +1,10 @@
 import java.io.*;
 import java.util.*;
 
+/**
+ * This class represents an area in the game where the player can move and interact with creatures.
+ * It maintains the state of the area, including dimensions, the current state of the board, and the player's position.
+ */
 public class Area {
     private ArrayList<Integer> nDimensions;
     private Reader CAreaReader;
@@ -13,6 +17,11 @@ public class Area {
     private Display CDisplay;
     private Sound CSound;
 
+    /**
+    * This constructor initializes a new area with a given number.
+    * @param strNumArea The number of the area.
+    * @throws IOException if there is an error reading the area dimensions or creature data.
+    */
     public Area(String strNumArea) throws IOException{
         this.CAreaReader = new Reader(new FileReader("AreaDimensions.txt"));
         this.CCreatures = new Creatures(this.CCreatureReader);
@@ -26,6 +35,9 @@ public class Area {
         this.CSound = new Sound();
     }
 
+    /**
+    * This method initializes the area by setting all positions to '.', except the player's position, which is set to 'P'.
+    */
     private void initializeArea() {
         for(int i = 0; i < cBoard.length; i++) {
             for(int j = 0; j < cBoard[i].length; j++) {
@@ -35,6 +47,9 @@ public class Area {
         cBoard[nPlayerRow][nPlayerCol] = 'P';
     }
 
+    /**
+    * This method prints the current state of the area to the console.
+    */
     public void printArea() {
         // Print the top border
         System.out.print("\t\t\t    ");
@@ -59,6 +74,14 @@ public class Area {
         System.out.println();
     }
 
+    /**
+     * This method moves the player in the area according to a given move and potentially triggers a battle with a creature.
+     * @param CPlayerInventory The player's inventory.
+     * @param nPlayerMove The move to make (1: UP, 2: DOWN, 3: LEFT, 4: RIGHT).
+     * @param nAreaNum The number assigned to the area
+     * @param CSound The sound utility class to play sounds
+     * @throws IOException if there is an error during the battle phase.
+     */
     public void movePlayer(Inventory CPlayerInventory, int nPlayerMove, int nAreaNum, Sound CSound) throws IOException{
         int nRow = nPlayerRow;
         int nCol = nPlayerCol;
@@ -141,6 +164,16 @@ public class Area {
         }
     }
 
+    /**
+    * This method handles the battle phase when a creature is encountered.
+    * It implements the logic for the player's actions, including attacking, swapping creatures, 
+    * catching creatures, and running away. It also handles the creature's health, 
+    * the possibility of the creature fleeing, and the end of the battle phase.
+    * @param CPlayerInventory The player's inventory.
+    * @param strCreature The name of the encountered creature.
+    * @param CSound The sound object used for playing sounds during the battle.
+    * @throws IOException if there is an error during the battle phase.
+    */
     public void battlePhase(Inventory CPlayerInventory, String strCreature, Sound CSound) throws IOException{
         Creatures CEnemy = this.CCreatures.getCreatureMap().get(strCreature);
         Creatures CPlayer = CPlayerInventory.getActive();
@@ -201,6 +234,7 @@ public class Area {
                     break;
                 case 2: // Swap
                     while(!CPlayerInventory.swapCreatures());
+                    nActions++;
                     break;
                 case 3: // Catch
                     dCatchRate = (40 + 50 - nHP) * .100;
@@ -268,6 +302,12 @@ public class Area {
         this.CSound.stop();
     }
 
+   /**
+    * This method determines if the player's creature is stronger than the enemy creature based on their types.
+    * @param strPlayerType The type of the player's creature.
+    * @param strEnemyType The type of the enemy creature.
+    * @return true if the player's creature is stronger, false otherwise.
+    */
     private boolean isEnemyWeaker(String strPlayerType, String strEnemyType) {
         switch(strPlayerType) {
             case "Fire":
@@ -283,6 +323,10 @@ public class Area {
         return false;
     }
 
+    /**
+    * This method decides if a creature will spawn based on a random number.
+    * @return true if a creature should spawn, false otherwise.
+    */
     private boolean creatureSpawning() {
         Random CRandom = new Random();
         int nRandomNum = CRandom.nextInt(10) + 1;
@@ -291,6 +335,10 @@ public class Area {
         return false;
     }
 
+    /**
+    * This method prints a health bar for the player's creature based on its current HP.
+    * @param nHP The current HP of the player's creature.
+    */
     private void printHPBar(int nHP) {
         int i = 0;
 
@@ -302,18 +350,34 @@ public class Area {
         System.out.println();
     }
 
+    /**
+    * This method sets the number of the area.
+    * @param strNumArea The number to set for the area.
+    */
     public void setNumArea(String strNumArea){
         this.strNumArea = strNumArea;
     }
 
+    /**
+    * This method gets the number of the area.
+    * @return The number of the area.
+    */
     public String getNumArea() {
         return this.strNumArea;
     }
 
+    /**
+    * This method sets the dimensions of the area based on the area number.
+    * @throws IOException if there is an error reading the dimensions file.
+    */
     public void setDimensions() throws IOException{
         this.nDimensions = CAreaReader.dimensionFileReader(this.strNumArea);
     }
 
+    /**
+    * This method gets the dimensions of the area.
+    * @return The dimensions of the area.
+    */
     public ArrayList<Integer> getDimensions(){
         return this.nDimensions;
     }

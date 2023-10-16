@@ -1,14 +1,28 @@
 import java.io.*;
 import java.util.*;
 
+/**
+* This class is a utility for reading data from files.
+* It contains methods for reading dimensions and creature data from a file.
+*/
 public class Reader {
     private FileReader CReader;
-    // private Creatures CCreature;
 
+    /**
+    * This constructor initializes a new Reader with a given FileReader.
+    * @param CReader The FileReader to use for reading data.
+    * @throws IOException if there is an error creating the Reader.
+    */
     public Reader(FileReader CReader) throws IOException {
         this.CReader = CReader;
     }
 
+    /**
+    * This method reads dimensions data from a file.
+    * @param strKey The key to look for in the file.
+    * @return A list of integers representing the dimensions data.
+    * @throws IOException if there is an error reading the file.
+    */
     public ArrayList<Integer> dimensionFileReader(String strKey) throws IOException{
         ArrayList<Integer> nList = new ArrayList<>();
         BufferedReader CBufferedReader = new BufferedReader(CReader);
@@ -31,6 +45,12 @@ public class Reader {
         return nList;
     }
 
+    
+    /**
+    * This method reads creature data from a file.
+    * @return A map of creature names to corresponding creature objects.
+    * @throws IOException if there is an error reading the file.
+    */
     public Map<String, Creatures> creatureFileReader() throws IOException{
         Map<String, Creatures> mapList = new HashMap<String, Creatures>();
         BufferedReader CBufferedReader = new BufferedReader(CReader);

@@ -1,12 +1,23 @@
 import java.util.*;
 
+/**
+* This class represents the inventory of creatures that a player carries.
+*/
 public class Inventory {
     private ArrayList<Creatures> aInventoryList;
 
+    /**
+    * Constructs a new, empty Inventory.
+    */
     public Inventory(){
         this.aInventoryList = new ArrayList<>();
     }
 
+    /**
+    * Adds a creature to the inventory.
+    * @param Creature The creature to add.
+    * @return true if the creature was added successfully, false otherwise.
+    */
     public boolean addCreature(Creatures Creature){
         if(aInventoryList.add(Creature)) {
             if(aInventoryList.size() == 1) 
@@ -16,6 +27,10 @@ public class Inventory {
         return false;
     }
 
+    /**
+    * Sets a creature in the inventory to active.
+    * @param input The index of the creature to activate.
+    */
     public void activeCreature(int input){
         if(input >= 0 && input < aInventoryList.size()) {
             // Set the creature at the input index to active
@@ -34,6 +49,10 @@ public class Inventory {
         }
     }
 
+    /**
+    * Returns the currently active creature.
+    * @return The active creature, or null if no creature is active.
+    */
     public Creatures getActive() {
         for (Creatures CCreature : aInventoryList) {
             if(CCreature.getState())
@@ -42,6 +61,10 @@ public class Inventory {
         return null;
     }
 
+    /**
+    * Swaps the currently active creature with another creature in the inventory.
+    * @return true if the swap was successful, false otherwise.
+    */
     public boolean swapCreatures() {
         Scanner CScanner = new Scanner(System.in);
         printInventory();
@@ -58,6 +81,9 @@ public class Inventory {
         return false;
     }
 
+    /**
+    * Prints the creatures in the inventory.
+    */
     public void printInventory(){
         int i = 1;
         sortInventory();
@@ -75,11 +101,18 @@ public class Inventory {
         System.out.println("\t\t\t+----+------------+-------+-------+");
     }
 
+    /**
+    * Sorts the creatures in the inventory by level, type, and name.
+    */
     private void sortInventory() {
         Comparator<Creatures> CCreaturesComparator = Comparator.comparing(Creatures::getLevel).thenComparing(Creatures::getType).thenComparing(Creatures::getName);
         Collections.sort(this.aInventoryList, CCreaturesComparator);
     }
 
+    /**
+    * Returns the list of creatures in the inventory.
+    * @return The list of creatures.
+    */
     public ArrayList<Creatures> getInventory(){
         return this.aInventoryList;
     }

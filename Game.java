@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.*;
 
+/**
+* This class represents the main game logic.
+*/
 public class Game {
         Area CArea; 
         Creatures Creature; 
@@ -8,6 +11,10 @@ public class Game {
         Display CDisplay;
         Sound CSound;
         
+    /**
+    * Constructs a new Game instance.
+    * @throws IOException if there is an error during the game initialization.
+    */
     public Game() throws IOException {
         this.Creature = new Creatures(new Reader(new FileReader("CreaturesList.txt")));
         this.CPlayerInventory = new Inventory();
@@ -15,6 +22,10 @@ public class Game {
         this.CSound = new Sound();
     }
 
+    /**
+    * Starts the game and handles the main game loop.
+    * @throws Exception if there is an error during the game.
+    */
     public void startGame() throws Exception {
         Scanner CScanner = new Scanner(System.in);
         int nChoice = 0;
@@ -87,6 +98,12 @@ public class Game {
 
     }
 
+    /**
+    * Allows the player to pick a starter creature.
+    * @param CPlayerInventory The player's inventory.
+    * @return true if the player successfully picked a starter creature, false otherwise.
+    * @throws IOException if there is an error during the creature selection.
+    */
     public boolean pickStarter(Inventory CPlayerInventory) throws IOException {
         this.CDisplay.starterPokemon();
         System.out.print("\n\t\t\tInput: ");
@@ -128,6 +145,11 @@ public class Game {
         return true;
     }
 
+    /**
+    * Allows the player to explore an area.
+    * @param nAreaNum The number of the area to explore.
+    * @throws Exception if there is an error during the exploration.
+    */
     public void exploreArea(int nAreaNum) throws Exception{
         Scanner CScanner = new Scanner(System.in);
         boolean bLeaveArea = false;

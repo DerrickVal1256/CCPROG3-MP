@@ -1,5 +1,11 @@
+/**
+* This class provides methods for displaying various game menus.
+*/
 public class Display {
 
+    /**
+    * Displays the main menu.
+    */
     public void mainMenu(){
         System.out.println("\t\t\t************************************");
         System.out.println("\t\t\t|            Main Menu             |");
@@ -12,6 +18,9 @@ public class Display {
         System.out.println("\t\t\t************************************");
     }
 
+    /**
+    * Displays the starter creature selection menu.
+    */
     public void starterPokemon(){
         System.out.println("\t\t\t**********************************");
         System.out.println("\t\t\t|      Choose your starter!      |");
@@ -23,6 +32,9 @@ public class Display {
         System.out.println("\t\t\t**********************************");
     }
 
+    /**
+    * Displays the area selection menu.
+    */
     public void areas(){
         System.out.println("\t\t\t+-------------------+");
         System.out.println("\t\t\t|       Areas       |");
@@ -34,6 +46,9 @@ public class Display {
         System.out.println("\t\t\t+-------------------+");
     }
 
+    /**
+    * Displays the movement options.
+    */
     public void movement() {
         System.out.println("\t\t\t+-------------------+");
         System.out.println("\t\t\t|       Move        |");
@@ -47,6 +62,9 @@ public class Display {
         System.out.println("\t\t\t+-------------------+");
     }
 
+    /**
+    * Displays the battle menu.
+    */
     public void battleMenu(){
         System.out.println("\t\t\t+-------------------+");
         System.out.println("\t\t\t|      Actions      |");
@@ -59,6 +77,11 @@ public class Display {
         System.out.println("\t\t\t+-------------------+");
     }
 
+    /**
+    * Displays the start game prompt.
+    * @param nInput The user's choice.
+    * @throws Exception If there is an error during the display.
+    */
     public void startDisplay(int nInput) throws Exception{
         do{
             System.out.println("Would you like to start your journey?");
