@@ -22,9 +22,6 @@ public class Creatures {
     public Creatures(Reader CReader) throws IOException{
         this.CReader = new Reader(new FileReader("CreaturesList.txt"));
         setMapCreatures();
-        // Set<String> mapKeys = new HashSet<String>();
-        // mapKeys = mapCreatures.keySet();
-        // this.strKeys = mapKeys.toArray(new String[0]);
     }
 
     /**
