@@ -6,7 +6,7 @@ import java.util.*;
 */
 public class Game {
         Area CArea; 
-        Creatures Creature; 
+        Creatures CCreature; 
         Inventory CPlayerInventory;   
         Display CDisplay;
         Sound CSound;
@@ -16,7 +16,7 @@ public class Game {
     * @throws IOException if there is an error during the game initialization.
     */
     public Game() throws IOException {
-        this.Creature = new Creatures(new Reader(new FileReader("CreaturesList.txt")));
+        this.CCreature = new Creatures(new Reader(new FileReader("CreaturesList.txt")));
         this.CPlayerInventory = new Inventory();
         this.CDisplay = new Display();
         this.CSound = new Sound();
@@ -111,7 +111,7 @@ public class Game {
 
         switch(nStarter) {
             case 1:
-                CPlayerInventory.addCreature(Creature.getCreatureMap().get("Strawander"));
+                CPlayerInventory.addCreature(CCreature.getCreatureMap().get("Strawander"));
                 System.out.println("\n\n\t         -- Successfully added Strawander to your inventory! --\n");
                 try {
                     Thread.sleep(1000);
@@ -120,7 +120,7 @@ public class Game {
                 }
                 break;
             case 2:
-                CPlayerInventory.addCreature(Creature.getCreatureMap().get("Brownisaur"));
+                CPlayerInventory.addCreature(CCreature.getCreatureMap().get("Brownisaur"));
                 System.out.println("\n\n\t         -- Successfully added Brownisaur to your inventory! --\n");
                 try {
                     Thread.sleep(1000);
@@ -129,7 +129,7 @@ public class Game {
                 }
                 break;
             case 3:
-                CPlayerInventory.addCreature(Creature.getCreatureMap().get("Squirpie"));
+                CPlayerInventory.addCreature(CCreature.getCreatureMap().get("Squirpie"));
                 System.out.println("\n\n\t         -- Successfully added Squirpie to your inventory! --\n");
                 try {
                     Thread.sleep(1000);
