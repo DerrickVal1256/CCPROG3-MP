@@ -35,15 +35,6 @@ public class Creatures {
     }
 
     /**
-    * Returns the map of creatures.
-    * @return The map of creatures.
-    * @throws IOException if there is an error during the map retrieval.
-    */
-    public Map<String, Creatures> getCreatureMap() throws IOException{
-        return this.mapCreatures;
-    }
-
-    /**
     * Returns a random creature based on the area number.
     * @param nAreaNum The number of the area.
     * @return The name of the random creature.
@@ -118,6 +109,14 @@ public class Creatures {
     public void setLevel(int nEvoLevel){
         this.nEvoLevel = nEvoLevel;
     }
+    
+    /**
+    * Sets the state of the creature.
+    * @param bState The state to set.
+    */
+    public void setStatus(boolean bState){
+        this.bState = bState;
+    }
 
     /**
     * Sets the map of creatures.
@@ -125,14 +124,6 @@ public class Creatures {
     */
     public void setMapCreatures() throws IOException{
         this.mapCreatures = this.CReader.creatureFileReader();
-    }
-
-    /**
-    * Sets the state of the creature.
-    * @param bState The state to set.
-    */
-    public void setStatus(boolean bState){
-        this.bState = bState;
     }
 
     /**
@@ -171,7 +162,16 @@ public class Creatures {
     * Returns the state of the creature.
     * @return The state of the creature.
     */
-    public boolean getState(){
+    public boolean getStatus(){
         return this.bState;
+    }
+
+    /**
+    * Returns the map of creatures.
+    * @return The map of creatures.
+    * @throws IOException if there is an error during the map retrieval.
+    */
+    public Map<String, Creatures> getCreatureMap() throws IOException{
+        return this.mapCreatures;
     }
 }
