@@ -15,7 +15,7 @@ public class Inventory {
 
     /**
     * Adds a creature to the inventory.
-    * @param Creature The creature to add.
+    * @param CCreature The creature to add.
     * @return true if the creature was added successfully, false otherwise.
     */
     public boolean addCreature(Creatures CCreature){
@@ -29,7 +29,7 @@ public class Inventory {
 
     /**
     * Sets a creature in the inventory to active.
-    * @param input The index of the creature to activate.
+    * @param nInput The index of the creature to activate.
     */
     public void activeCreature(int nInput){
         if(nInput >= 0 && nInput < aInventoryList.size()) {
@@ -53,7 +53,7 @@ public class Inventory {
     */
     public Creatures getActive() {
         for (Creatures CCreature : aInventoryList) {
-            if(CCreature.getState())
+            if(CCreature.getStatus())
                 return CCreature;
         }
         return null;
@@ -90,7 +90,7 @@ public class Inventory {
         System.out.printf("\t\t\t| %-3s| %-10s | %-5s | %-5s |\n", "No.", "   Name", "Type", "Level");
         System.out.println("\t\t\t+----+------------+-------+-------+");
         for (Creatures CCreature : aInventoryList) {
-            if(CCreature.getState()){
+            if(CCreature.getStatus()){
                 System.out.printf("\t\t\t| %-1s. | %-10s | %-5s | %-5s | <--- Current \n" , i++, CCreature.getName(), CCreature.getType(), "  " + CCreature.getLevel());
             } else {
                 System.out.printf("\t\t\t| %-1s. | %-10s | %-5s | %-5s | \n" , i++, CCreature.getName(), CCreature.getType(), "  " + CCreature.getLevel());
