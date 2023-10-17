@@ -8,7 +8,7 @@ public class Driver {
      * @throws Exception if there is an error in running the driver
      */
     public static void main(String args[]) throws Exception {
-        Game game = new Game();
-        game.startGame();
+        Game CGame = new Game();
+        CGame.startGame();
      }
 }
