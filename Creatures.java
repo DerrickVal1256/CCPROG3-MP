@@ -74,6 +74,20 @@ public class Creatures {
     }
 
     /**
+    * Returns a string representation of the creature.
+    * @return A string representation of the creature.
+    */
+    // debugger method
+    @Override
+    public String toString() {
+        return  '{' +
+                strName + ", " +
+                strType + ", " +
+                nEvoLevel +
+                '}';
+    }
+
+    /**
      * Sets the name of the creature.
      * @param strName The name to set.
      */
@@ -159,19 +173,5 @@ public class Creatures {
     */
     public boolean getState(){
         return this.bState;
-    }
-
-    /**
-    * Returns a string representation of the creature.
-    * @return A string representation of the creature.
-    */
-    // debugger method
-    @Override
-    public String toString() {
-        return  '{' +
-                strName + ", " +
-                strType + ", " +
-                nEvoLevel +
-                '}';
     }
 }
