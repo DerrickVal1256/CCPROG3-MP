@@ -12,7 +12,6 @@ public class Creatures {
     private boolean bState;
     private Reader CReader;
     private Map<String, Creatures> mapCreatures;
-    // private String[] strKeys;
 
     /**
     * Constructs a new Creatures instance with a given reader.
