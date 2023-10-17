@@ -26,6 +26,13 @@ public class Sound {
         }
         this.CClip.start(); 
     }
+    
+    /**
+     * Stops the current sound effect.
+     */
+    public void stop(){
+        this.CClip.stop();
+    }
 
     /**
      * Returns the current Clip.
@@ -33,12 +40,5 @@ public class Sound {
      */
     public Clip getClip() {
         return this.CClip;
-    }
-
-    /**
-     * Stops the current sound effect.
-     */
-    public void stop(){
-        this.CClip.stop();
     }
 }
