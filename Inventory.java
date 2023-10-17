@@ -18,8 +18,8 @@ public class Inventory {
     * @param Creature The creature to add.
     * @return true if the creature was added successfully, false otherwise.
     */
-    public boolean addCreature(Creatures Creature){
-        if(aInventoryList.add(Creature)) {
+    public boolean addCreature(Creatures CCreature){
+        if(aInventoryList.add(CCreature)) {
             if(aInventoryList.size() == 1) 
                 aInventoryList.get(0).setStatus(true);
             return true;
@@ -31,22 +31,20 @@ public class Inventory {
     * Sets a creature in the inventory to active.
     * @param input The index of the creature to activate.
     */
-    public void activeCreature(int input){
-        if(input >= 0 && input < aInventoryList.size()) {
+    public void activeCreature(int nInput){
+        if(nInput >= 0 && nInput < aInventoryList.size()) {
             // Set the creature at the input index to active
-            aInventoryList.get(input).setStatus(true);
+            aInventoryList.get(nInput).setStatus(true);
             
             // Loop through the ArrayList
             for (int x = 0; x < aInventoryList.size(); x++) {
                 // If the index is not equal to the input
-                if (x != input) {
+                if (x != nInput) {
                     // Set the creature at this index to inactive
                     aInventoryList.get(x).setStatus(false);
                 }
             }
-        } else {
-            System.out.println("\t\t\tInvalid index: " + input);
-        }
+        } 
     }
 
     /**
@@ -70,15 +68,15 @@ public class Inventory {
         printInventory();
         System.out.println();
         System.out.print("\t\t\tSelect your Creature: ");
-        int nSwapTo = CScanner.nextInt() - 1;
-        if(nSwapTo > aInventoryList.size() || nSwapTo < 0){
+        int nSwapTo = CScanner.nextInt();
+        if(nSwapTo > aInventoryList.size() || nSwapTo <= 0){
             System.out.println("\t\t\t-- Invalid Index! -- ");
+            return false;
         } else {
-            activeCreature(nSwapTo);
+            activeCreature(nSwapTo - 1);
             System.out.println("\n\t\t\t" + getActive().getName() + " is now active!\n");
             return true;
         }
-        return false;
     }
 
     /**
