@@ -1,36 +1,42 @@
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.scene.control.Button;
+
+
 /**
 * This class provides methods for displaying various game menus.
 */
-public class Display {
+public class Display extends VBox{
 
+    public Display() {
+
+    }
     /**
     * Displays the main menu.
     */
-    public void mainMenu(){
-        System.out.println("\t\t\t************************************");
-        System.out.println("\t\t\t|            Main Menu             |");
-        System.out.println("\t\t\t|                                  |");
-        System.out.println("\t\t\t|        [1] View Inventory        |");
-        System.out.println("\t\t\t|        [2] Explore an Area       |");
-        System.out.println("\t\t\t|        [3] Evolve Creature       |");
-        System.out.println("\t\t\t|        [4] Exit                  |");
-        System.out.println("\t\t\t|                                  |");
-        System.out.println("\t\t\t************************************");
-    }
-
-    /**
-    * Displays the starter creature selection menu.
-    */
-    public void starterPokemon(){
-        System.out.println("\t\t\t**********************************");
-        System.out.println("\t\t\t|      Choose your starter!      |");
-        System.out.println("\t\t\t|                                |");
-        System.out.println("\t\t\t|         [1] Strawander         |");
-        System.out.println("\t\t\t|         [2] Brownisaur         |");
-        System.out.println("\t\t\t|         [3] Squirpie           |");
-        System.out.println("\t\t\t|                                |");
-        System.out.println("\t\t\t**********************************");
-    }
+//    public Scene mainMenu(){
+//        System.out.println("\t\t\t************************************");
+//        System.out.println("\t\t\t|            Main Menu             |");
+//        System.out.println("\t\t\t|                                  |");
+//        System.out.println("\t\t\t|        [1] View Inventory        |");
+//        System.out.println("\t\t\t|        [2] Explore an Area       |");
+//        System.out.println("\t\t\t|        [3] Evolve Creature       |");
+//        System.out.println("\t\t\t|        [4] Exit                  |");
+//        System.out.println("\t\t\t|                                  |");
+//        System.out.println("\t\t\t************************************");
+//        return new Scene(800, 800);
+//    }
 
     /**
     * Displays the area selection menu.
@@ -77,19 +83,9 @@ public class Display {
         System.out.println("\t\t\t+-------------------+");
     }
 
-    /**
-    * Displays the start game prompt.
-    * @param nInput The user's choice.
-    * @throws Exception If there is an error during the display.
-    */
-    public void startDisplay(int nInput) throws Exception{
-        do{
-            System.out.println("Would you like to start your journey?");
-            System.out.println("[1] Yes");
-            Thread.sleep(2000); 
-            System.out.flush();  
-            System.out.print("\033[H\033[2J"); 
-        }while(nInput != 1);
+    public Button getButton(Button FButton) {
+        return FButton;
     }
+
 
 }

@@ -47,11 +47,9 @@ public class Creatures {
         /*
          * this is used to generate a list of creatures based on the area number 
          */
-        Iterator<Map.Entry<String, Creatures>> CIterator = this.mapCreatures.entrySet().iterator();
-        while(CIterator.hasNext()) {
-            Map.Entry<String, Creatures> CEntry = CIterator.next();
+        for (Map.Entry<String, Creatures> CEntry : this.mapCreatures.entrySet()) {
             Creatures CCreature = CEntry.getValue();
-            if(CCreature.getLevel() <= nAreaNum) {
+            if (CCreature.getLevel() <= nAreaNum) {
                 mapKeys.add(CCreature.getName());
             }
         }
@@ -59,9 +57,8 @@ public class Creatures {
         String[] strKeys = mapKeys.toArray(new String[0]);
 
         randomIndex = random.nextInt(strKeys.length);
-        String randomCreature = strKeys[randomIndex];
 
-        return randomCreature;
+        return strKeys[randomIndex];
     }
 
     /**
