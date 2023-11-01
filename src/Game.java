@@ -1,3 +1,8 @@
+import com.sun.tools.javac.Main;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.stage.Stage;
+
 import java.io.*;
 import java.util.*;
 
@@ -5,27 +10,26 @@ import java.util.*;
 * This class represents the main game logic.
 */
 public class Game {
-        Area CArea; 
-        Creatures CCreature; 
-        Inventory CPlayerInventory;   
-        Display CDisplay;
-        Sound CSound;
-        
+        private Area CArea;
+        private Creatures CCreature;
+        private Inventory CPlayerInventory;
+        private Display CDisplay;
+        private Sound CSound;
+        private CreatureView CCreatureView;
+
+
+
     /**
     * Constructs a new Game instance.
     * @throws IOException if there is an error during the game initialization.
     */
-    public Game() throws IOException {
+    public Game(CreatureView CCreatureView, Stage FStage) throws IOException {
         this.CCreature = new Creatures(new Reader(new FileReader("CreaturesList.txt")));
         this.CPlayerInventory = new Inventory();
-        this.CDisplay = new Display();
         this.CSound = new Sound();
+        this.CCreatureView = CCreatureView;
     }
 
-    /**
-    * Starts the game and handles the main game loop.
-    * @throws Exception if there is an error during the game.
-    */
     public void startGame() throws Exception {
         Scanner CScanner = new Scanner(System.in);
         int nChoice = 0;
@@ -36,7 +40,7 @@ public class Game {
         System.out.println();
         this.CSound.play("PkmRS_Littleroot.wav");
         do{
-            CDisplay.mainMenu();
+//            CDisplay.mainMenu();
             System.out.print("\t\t\tInput: ");
             nChoice = CScanner.nextInt();
             switch(nChoice){
@@ -59,7 +63,7 @@ public class Game {
                                 System.out.println("\n\t\t\t-- Input out of bounds! --\n");
                             }
                         }
-                        
+
                     }
                     break;
                 case 2: // Explore Area
@@ -77,14 +81,14 @@ public class Game {
                             exploreArea(nAreaChoice);
                             this.CSound.play("PkmRS_Littleroot.wav");
                         } else if(nAreaChoice == 2 || nAreaChoice == 3) {
-                            System.out.println("\n\n\t      -- This area will be addded to the next Major Update! --\n\n");
+                            System.out.println("\n\n\t      -- This area will be added to the next Major Update! --\n\n");
                         } else {
                             System.out.println("   \n\t\t\t-- Invalid Choice! --\n");
                         }
                     }
                     break;
                 case 3: // Evolve Creature (will be added in MC02)
-                    System.out.println("\n\n\t    -- This feature will be addded to the next Major Update! --\n\n");
+                    System.out.println("\n\n\t    -- This feature will be added to the next Major Update! --\n\n");
                     break;
                 case 4: // Exit
                     break;
@@ -98,14 +102,31 @@ public class Game {
 
     }
 
+    public void startGameApp() throws Exception {
+        this.pickStarter();
+        /*
+        * Sequence of Game
+        *
+        * pick a starter
+        * show the starter has been added to inventory (either show inventory or just text)
+        * show main menu
+        * code different menu options
+        *
+        * */
+    }
+
+    /**
+    * Starts the game and handles the main game loop.
+    * @throws Exception if there is an error during the game.
+    */
     /**
     * Allows the player to pick a starter creature.
     * @param CPlayerInventory The player's inventory.
     * @return true if the player successfully picked a starter creature, false otherwise.
     * @throws IOException if there is an error during the creature selection.
     */
-    public boolean pickStarter(Inventory CPlayerInventory) throws IOException {
-        this.CDisplay.starterPokemon();
+    public boolean pickStarter(Inventory CPlayerInventory) throws Exception {
+//        this.CDisplay.starterCreature();
         System.out.print("\n\t\t\tInput: ");
         int nStarter = new Scanner(System.in).nextInt();
 
@@ -141,7 +162,7 @@ public class Game {
                 System.out.println("\n\t\t\t-- Input out of bounds! --\n");
                 return false;
         }
-        
+
         return true;
     }
 
@@ -168,5 +189,31 @@ public class Game {
                 bLeaveArea = true;
             }
         }
+    }
+
+    public void pickStarter() throws IOException {
+        this.CCreatureView.getStarterButton1().setOnAction(event -> {
+            try {
+                this.CPlayerInventory.addCreature(CCreature.getCreatureMap().get("Strawander"));
+                Stage FCurStage = (Stage)CCreatureView.getStarterButton1().getScene().getWindow();
+                FCurStage.setScene(CCreatureView.display());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+        this.CCreatureView.getStarterButton2().setOnAction(event -> {
+            try {
+                this.CPlayerInventory.addCreature(CCreature.getCreatureMap().get("Brownisaur"));
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+        this.CCreatureView.getStarterButton3().setOnAction(event -> {
+            try {
+                this.CPlayerInventory.addCreature(CCreature.getCreatureMap().get("Squirpie"));
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
     }
 }
