@@ -6,22 +6,22 @@ import java.util.*;
 * This class represents a creature in the game.
 */
 public class Creatures {
-    private String strName;
-    private String strType;
-    private char cFamily;
-    private int nEvoLevel;
-    private boolean bState;
-    private Reader CReader;
-    private Map<String, Creatures> mapCreatures;
+    protected String strName;
+    protected String strType;
+    protected char cFamily;
+    protected int nEvoLevel;
+    protected boolean bState;
+    protected Reader CReader;
+    protected Map<String, Creatures> mapCreatures;
 
     /**
     * Constructs a new, empty Creatures instance.
     */
-    public Creatures() {
-        this.strName = "";
-        this.strType = "";
-        this.cFamily = ' ';
-        this.nEvoLevel = 0;
+    public Creatures(String stName, String strType, char cFamily, int nEvoLevel) {
+        this.strName = stName;
+        this.strType = strType;
+        this.cFamily = cFamily;
+        this.nEvoLevel = nEvoLevel;
         this.bState = false;
     }
 

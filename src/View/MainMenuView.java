@@ -16,13 +16,13 @@ import javafx.scene.control.Button;
 /**
 * This class provides methods for displaying various game menus.
 */
-public class MenuView extends VBox{
+public class MainMenuView extends VBox{
     private Button CViewInventoryButton,
                    CExploreAreaButton,
                    CEvolveCreatureButton,
                    CExitButton;
 
-    public MenuView() {
+    public MainMenuView() {
         this.CViewInventoryButton = new Button();
         this.CExploreAreaButton = new Button();
         this.CEvolveCreatureButton = new Button();

@@ -1,5 +1,7 @@
 package Model;
 
+import View.MainMenuView;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
@@ -20,25 +22,48 @@ public class GameModel {
         this.CSound = new Sound();
     }
 
-    public boolean pickStarter(int nStarterNum) {
+    public String pickStarter(int nStarterNum) {
+        MainMenuView CMainMenuView = new MainMenuView();
+        String strCreatureAdded = "";
         switch (nStarterNum) {
             case 1 -> {
-                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Strawander"));
-                this.CSound.play("PkmRS_Littleroot.wav");
-                return true;
+                this.CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Strawander"));
+                strCreatureAdded = "Strawander";
             }
             case 2 -> {
-                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Brownisaur"));
-                this.CSound.play("PkmRS_Littleroot.wav");
-                return true;
+                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Chocowool"));
+                strCreatureAdded = "Chocowool";
             }
             case 3 -> {
+                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Parwif"));
+                strCreatureAdded = "Parwif";
+            }
+            case 4 -> {
+                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Brownisaur"));
+                strCreatureAdded = "Brownisaur";
+            }
+            case 5 -> {
+                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Frubat"));
+                strCreatureAdded = "Frubat";
+            }
+            case 6 -> {
+                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Malts"));
+                strCreatureAdded = "Malts";
+            }
+            case 7 -> {
                 CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Squirpie"));
-                this.CSound.play("PkmRS_Littleroot.wav");
-                return true;
+                strCreatureAdded = "Squirpie";
+            }
+            case 8 -> {
+                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Chocolite"));
+                strCreatureAdded = "Chocolite";
+            }
+            case 9 -> {
+                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Oshacone"));
+                strCreatureAdded = "Oshacone";
             }
         }
-        return false;
+        return strCreatureAdded;
     }
 
     public Sound getSound() {

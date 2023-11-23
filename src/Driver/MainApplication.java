@@ -1,6 +1,7 @@
 package Driver;
 import Controller.GameController;
 import Model.GameModel;
+import Model.Player;
 import View.GameView;
 import javafx.application.Application;
 import javafx.scene.image.Image;

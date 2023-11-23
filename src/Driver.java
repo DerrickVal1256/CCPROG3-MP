@@ -1,5 +1,5 @@
-package Driver;
 import javafx.application.*;
+import Driver.*;
 /**
  * The driver class 
  */

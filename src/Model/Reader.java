@@ -55,15 +55,10 @@ public class Reader {
     public Map<String, Creatures> creatureFileReader() throws IOException{
         Map<String, Creatures> mapList = new HashMap<String, Creatures>();
         BufferedReader CBufferedReader = new BufferedReader(CReader);
-        Creatures CCreature;
         String strLine = "";
 
         while((strLine = CBufferedReader.readLine()) != null){
-            mapList.put(strLine, CCreature = new Creatures());
-            CCreature.setName(strLine);
-            CCreature.setType(CBufferedReader.readLine());
-            CCreature.setFamily(CBufferedReader.readLine().charAt(0));
-            CCreature.setLevel(Integer.parseInt(CBufferedReader.readLine()));
+            mapList.put(strLine, new Creatures(strLine, CBufferedReader.readLine(), CBufferedReader.readLine().charAt(0), Integer.parseInt(CBufferedReader.readLine())));
         }
         return mapList;
     }

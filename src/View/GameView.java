@@ -2,11 +2,11 @@ package View;
 
 public class GameView {
     private StarterCreatureView CStarterCreatureView;
-    private MenuView CMenuView;
+    private MainMenuView CMainMenuView;
     private InventoryView CInventoryView;
     public GameView() {
         this.CStarterCreatureView = new StarterCreatureView();
-        this.CMenuView = new MenuView();
+        this.CMainMenuView = new MainMenuView();
         this.CInventoryView = new InventoryView();
     }
 
@@ -16,8 +16,8 @@ public class GameView {
         return this.CStarterCreatureView;
     }
 
-    public MenuView getMenuView() {
-        return this.CMenuView;
+    public MainMenuView getMainMenuView() {
+        return this.CMainMenuView;
     }
 
     public InventoryView getInventoryView() {
