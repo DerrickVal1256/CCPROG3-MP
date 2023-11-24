@@ -35,8 +35,8 @@ public class GameModel {
                 strCreatureAdded = "Chocowool";
             }
             case 3 -> {
-                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Parwif"));
-                strCreatureAdded = "Parwif";
+                CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Parfwit"));
+                strCreatureAdded = "Parfwit";
             }
             case 4 -> {
                 CPlayer.getPlayerInventory().addCreature(this.mapCreatures.get("Brownisaur"));

@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 
-public class InventoryView extends VBox {
+public class InventoryView {
     private ArrayList<Button> aInventoryButtons;
 
     public InventoryView() {

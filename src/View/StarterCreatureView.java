@@ -14,7 +14,7 @@ import javafx.scene.control.Button;
 
 import javax.swing.*;
 
-public class StarterCreatureView extends VBox {
+public class StarterCreatureView {
 
     private Button CStarterButton1,
                    CStarterButton2,

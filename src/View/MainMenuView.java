@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Box;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -16,24 +17,30 @@ import javafx.scene.control.Button;
 /**
 * This class provides methods for displaying various game menus.
 */
-public class MainMenuView extends VBox{
+public class MainMenuView {
     private Button CViewInventoryButton,
                    CExploreAreaButton,
                    CEvolveCreatureButton,
-                   CExitButton;
+                   CExitButton,
+                   CAreaOneButton,
+                   CAreaTwoButton,
+                   CAreaThreeButton;
 
     public MainMenuView() {
         this.CViewInventoryButton = new Button();
         this.CExploreAreaButton = new Button();
         this.CEvolveCreatureButton = new Button();
         this.CExitButton = new Button();
+        this.CAreaOneButton = new Button();
+        this.CAreaTwoButton = new Button();
+        this.CAreaThreeButton = new Button();
     }
 
     public Scene mainMenu() {
         StackPane CStackLayout = new StackPane();
         GridPane CGridLayout = new GridPane();
 
-        /* Rectangle to border the menu */
+        /* Rectangle for border the menu */
         Rectangle CRectangle = new Rectangle(500, 700);
         CRectangle.setStroke(Color.BLACK);
         CRectangle.setFill(null);
@@ -42,16 +49,16 @@ public class MainMenuView extends VBox{
         StackPane.setMargin(CRectangle, new Insets(10, 10, 10, 10));
 
         /* These are to create a gray border around the button when hovering over them */
-        String strHoverStyle = "-fx-background-color: #e0e0e0; -Cx-padding: 12px;";
-        String strExitStyle = "-fx-background-color: transparent; -Cx-padding: 12px;";
+        String strHoverStyle = "-fx-background-color: #e0e0e0; -fx-padding: 12px;";
+        String strExitStyle = "-fx-background-color: transparent; -fx-padding: 12px;";
 
-        /* DiCCerent Images Cor the buttons */
+        /* Different Images for the buttons */
         Image CInventoryImage = new Image("images/MenuImages/inventory.png");
         Image CExploreAreaImage = new Image("images/MenuImages/explore.jpg");
         Image CEvolveImage = new Image("images/MenuImages/evolve.png");
         Image CExit = new Image("images/MenuImages/exit.png");
 
-        /* ImageViews Cor the buttons' HBoxes */
+        /* ImageViews for the buttons' HBoxes */
         ImageView CInventoryImageView = new ImageView(CInventoryImage);
         CInventoryImageView.setPreserveRatio(true);
         CInventoryImageView.setFitWidth(80);
@@ -167,6 +174,93 @@ public class MainMenuView extends VBox{
         return new Scene(new StackPane(CStackLayout, CGridLayout), 1920, 1080);
     }
 
+    public Scene areaPickerMenu() {
+        StackPane CStackPane = new StackPane();
+        GridPane CGridLayout = new GridPane();
+        StackPane CMainStackPane = new StackPane();
+
+        /* These are to create a gray border around the button when hovering over them */
+        String strHoverStyle = "-fx-background-color: #e0e0e0; -fx-padding: 12px;";
+        String strExitStyle = "-fx-background-color: transparent; -fx-padding: 12px;";
+
+        /* Box Style */
+        String strBoxStyle = "-fx-border-color: BLACK; -fx-border-width: 2;";
+
+        /* Rectangle to border the menu */
+        Rectangle CRectangle = new Rectangle(500, 700);
+        CRectangle.setStroke(Color.BLACK);
+        CRectangle.setFill(null);
+        CRectangle.setStrokeWidth(2);
+        StackPane.setAlignment(CRectangle, Pos.CENTER);
+        StackPane.setMargin(CRectangle, new Insets(10, 10, 10, 10));
+
+        Text CMenuTitle = new Text("Pick an Area \n to Explore");
+        CMenuTitle.setFont(Font.font("Pokemon Hollow", 40));
+        StackPane.setAlignment(CMenuTitle, Pos.TOP_CENTER);
+        StackPane.setMargin(CMenuTitle, new Insets(200, 10, 10, 10));
+
+        /* Area One Button */
+
+        Text CAreaOneText = new Text(" Area One ");
+        CAreaOneText.setFill(Color.BLACK);
+        CAreaOneText.setFont(Font.font("Ebrima", 30));
+
+        HBox CAreaOneBox = new HBox(CAreaOneText);
+        CAreaOneBox.setStyle(strBoxStyle);
+
+        this.CAreaOneButton.setGraphic(CAreaOneBox);
+        this.CAreaOneButton.setStyle(strExitStyle);
+
+        /* Area Two Button */
+
+        Text CAreaTwoText = new Text(" Area Two ");
+        CAreaTwoText.setFill(Color.BLACK);
+        CAreaTwoText.setFont(Font.font("Ebrima", 30));
+
+        HBox CAreaTwoBox = new HBox(CAreaTwoText);
+        CAreaTwoBox.setStyle(strBoxStyle);
+
+        this.CAreaTwoButton.setGraphic(CAreaTwoBox);
+        this.CAreaTwoButton.setStyle(strExitStyle);
+
+        /* Area Three Button */
+
+        Text CAreaThreeText = new Text(" Area Three ");
+        CAreaThreeText.setFill(Color.BLACK);
+        CAreaThreeText.setFont(Font.font("Ebrima", 30));
+
+        HBox CAreaThreeBox = new HBox(CAreaThreeText);
+        CAreaThreeBox.setStyle(strBoxStyle);
+
+        this.CAreaThreeButton.setGraphic(CAreaThreeBox);
+        this.CAreaThreeButton.setStyle(strExitStyle);
+
+        CGridLayout.add(this.CAreaOneButton, 0, 0);
+        CGridLayout.add(this.CAreaTwoButton, 0, 1);
+        CGridLayout.add(this.CAreaThreeButton, 0, 2);
+
+        this.CAreaOneButton.setOnMouseEntered(e -> this.CAreaOneButton.setStyle(strHoverStyle));
+        this.CAreaOneButton.setOnMouseExited(e -> this.CAreaOneButton.setStyle(strExitStyle));
+
+        this.CAreaTwoButton.setOnMouseEntered(e -> this.CAreaTwoButton.setStyle(strHoverStyle));
+        this.CAreaTwoButton.setOnMouseExited(e -> this.CAreaTwoButton.setStyle(strExitStyle));
+
+        this.CAreaThreeButton.setOnMouseEntered(e -> this.CAreaThreeButton.setStyle(strHoverStyle));
+        this.CAreaThreeButton.setOnMouseExited(e -> this.CAreaThreeButton.setStyle(strExitStyle));
+
+        CGridLayout.setAlignment(Pos.CENTER);
+        CGridLayout.setHgap(80);
+        CGridLayout.setVgap(30);
+
+        CStackPane.getChildren().addAll(CRectangle, CMenuTitle);
+
+        CMainStackPane.getChildren().addAll(CGridLayout, CStackPane);
+
+        Scene CAreaPickerMenu = new Scene(CMainStackPane, 1920, 1080);
+
+        return CAreaPickerMenu;
+    }
+
     /**
     * Displays the area selection menu.
     */
@@ -226,6 +320,18 @@ public class MainMenuView extends VBox{
 
     public Button getExitButton() {
         return this.CExitButton;
+    }
+
+    public Button getCAreaOneButton() {
+        return this.CAreaOneButton;
+    }
+
+    public Button getCAreaTwoButton() {
+        return this.CAreaTwoButton;
+    }
+
+    public Button getCAreaThreeButton() {
+        return this.CAreaThreeButton;
     }
 
 }

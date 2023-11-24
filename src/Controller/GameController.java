@@ -33,7 +33,7 @@ public class GameController {
 
         this.CGameView.getStarterCreatureView().getStarterButton6().setOnAction(event -> this.eventPickStarter(6));
 
-        this.CGameView.getStarterCreatureView().getStarterButton7().setOnAction(event -> this.eventPickStarter(8));
+        this.CGameView.getStarterCreatureView().getStarterButton7().setOnAction(event -> this.eventPickStarter(7));
 
         this.CGameView.getStarterCreatureView().getStarterButton8().setOnAction(event -> this.eventPickStarter(8));
 
@@ -42,7 +42,7 @@ public class GameController {
 
     public void mainMenuHandler () {
         this.CGameView.getMainMenuView().getViewInventoryButton();
-        this.CGameView.getMainMenuView().getExploreAreaButton();
+        this.CGameView.getMainMenuView().getExploreAreaButton().setOnAction(event -> this.eventExploreArea());
         this.CGameView.getMainMenuView().getEvolveCreatureButton();
         this.CGameView.getMainMenuView().getExitButton().setOnAction(event -> System.exit(0));
     }
@@ -53,6 +53,11 @@ public class GameController {
         this.sleep(1);
         this.CGameModel.getSound().play("PkmRS_Littleroot.wav");
         this.CStage.setScene(CGameView.getMainMenuView().mainMenu());
+        this.CStage.show();
+    }
+
+    private void eventExploreArea() {
+        this.CStage.setScene(this.CGameView.getMainMenuView().areaPickerMenu());
         this.CStage.show();
     }
 
