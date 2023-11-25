@@ -233,7 +233,7 @@ public class Area {
                     nActions++;
                     break;
                 case 2: // Swap
-                    if(CPlayerInventory.getInventory().size() != 1) {
+                    if(CPlayerInventory.getCreatures().size() != 1) {
                         while(!CPlayerInventory.swapCreatures());
                         nActions++;
                     } else {

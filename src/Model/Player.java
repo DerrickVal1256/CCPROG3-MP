@@ -29,4 +29,8 @@ public class Player {
     public void setName(String strName) {
         this.strName = strName;
     }
+
+    public String getUsername() {
+        return this.strName;
+    }
 }
