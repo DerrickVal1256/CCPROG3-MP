@@ -129,15 +129,13 @@ public class StarterCreatureView {
         CBVBox1.setAlignment(Pos.CENTER);
         CBVBox1.setSpacing(10);
         CBVBox1.setStyle("-fx-border-color: BLACK; -fx-border-width: 2;");
-//        CBVBox1.setMinSize(DVBoxWidth, DVBoxHeight);
-//        CBVBox1.setMaxSize(DVBoxWidth, DVBoxHeight);
 
         this.CStarterButton1.setGraphic(CBVBox1);
         this.CStarterButton1.setStyle(strExitStyle);
 
         /* Chocowool */
 
-        Text CBText2 = new Text("Chocowool");
+        Text CBText2 = new Text("CHOCOWOOL");
         CBText2.setFill(Color.WHITE);
         CBText2.setFont(Font.font("Ebrima", 12));
         CBText2.setStyle("-fx-font-weight: bold;");
@@ -157,8 +155,6 @@ public class StarterCreatureView {
         CBVBox2.setAlignment(Pos.CENTER);
         CBVBox2.setSpacing(10);
         CBVBox2.setStyle("-fx-border-color: BLACK; -fx-border-width: 2;");
-//        CBVBox2.setMinSize(DVBoxWidth, DVBoxHeight);
-//        CBVBox2.setMaxSize(DVBoxWidth, DVBoxHeight);
 
 
         this.CStarterButton2.setGraphic(CBVBox2);
@@ -166,7 +162,7 @@ public class StarterCreatureView {
 
         /* Parfwit */
 
-        Text CBText3 = new Text("Parfwit");
+        Text CBText3 = new Text("PARFWIT");
         CBText3.setFill(Color.WHITE);
         CBText3.setFont(Font.font("Ebrima", 12));
         CBText3.setStyle("-fx-font-weight: bold;");
@@ -194,7 +190,7 @@ public class StarterCreatureView {
 
         /* Brownisaur */
 
-        Text CBText4 = new Text("Brownisaur");
+        Text CBText4 = new Text("BROWNISAUR");
         CBText4.setFill(Color.WHITE);
         CBText4.setFont(Font.font("Ebrima", 12));
         CBText4.setStyle("-fx-font-weight: bold;");
@@ -222,7 +218,7 @@ public class StarterCreatureView {
 
         /* Frubat */
 
-        Text CBText5 = new Text("Frubat");
+        Text CBText5 = new Text("FRUBAT");
         CBText5.setFill(Color.WHITE);
         CBText5.setFont(Font.font("Ebrima", 12));
         CBText5.setStyle("-fx-font-weight: bold;");
@@ -250,7 +246,7 @@ public class StarterCreatureView {
 
         /* Malts */
 
-        Text CBText6 = new Text("Malts");
+        Text CBText6 = new Text("MALTS");
         CBText6.setFill(Color.WHITE);
         CBText6.setFont(Font.font("Ebrima", 12));
         CBText6.setStyle("-fx-font-weight: bold;");
@@ -306,7 +302,7 @@ public class StarterCreatureView {
 
         /* Chocolite */
 
-        Text CBText8 = new Text("Chocolite");
+        Text CBText8 = new Text("CHOCOLITE");
         CBText8.setFill(Color.WHITE);
         CBText8.setFont(Font.font("Ebrima", 12));
         CBText8.setStyle("-fx-font-weight: bold;");
@@ -335,7 +331,7 @@ public class StarterCreatureView {
 
         /* Oshacone */
 
-        Text CBText9 = new Text("Oshacone");
+        Text CBText9 = new Text("OSHACONE");
         CBText9.setFill(Color.WHITE);
         CBText9.setFont(Font.font("Ebrima", 12));
         CBText9.setStyle("-fx-font-weight: bold;");

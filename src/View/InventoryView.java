@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
@@ -17,9 +16,12 @@ public class InventoryView {
         this.aInventoryButtons = new ArrayList<Button>();
     }
 
-    public Scene displayInventory() {
+
+    public Scene displayInventory(ArrayList<String> aInventoryCreatures) {
+
         StackPane CStackLayout = new StackPane();
         GridPane CGridLayout = new GridPane();
+         
 
         /* These are to create a gray border around the button when hovering over them */
         String strHoverStyle = "-fx-background-color: #e0e0e0; -fx-padding: 12px;";
@@ -34,6 +36,8 @@ public class InventoryView {
 
         return new Scene(new StackPane(CStackLayout, CGridLayout), 1920, 1080);
     }
+
+
 
     public ArrayList<Button> getInventoryButtons() {
         return this.aInventoryButtons;

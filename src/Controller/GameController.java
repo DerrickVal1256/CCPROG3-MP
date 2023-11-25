@@ -1,8 +1,8 @@
 package Controller;
 import Model.GameModel;
 import View.GameView;
-import Model.Sound;
 
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -42,22 +42,23 @@ public class GameController {
 
     public void mainMenuHandler () {
         this.CGameView.getMainMenuView().getViewInventoryButton();
-        this.CGameView.getMainMenuView().getExploreAreaButton().setOnAction(event -> this.eventExploreArea());
+        this.CGameView.getMainMenuView().getExploreAreaButton().setOnAction(event -> this.setScene(this.CGameView.getMainMenuView().areaPickerMenu()));
         this.CGameView.getMainMenuView().getEvolveCreatureButton();
         this.CGameView.getMainMenuView().getExitButton().setOnAction(event -> System.exit(0));
+        this.CGameView.getMainMenuView().getAreaOneButton().setOnAction(event -> this.setScene(this.CGameView.getAreaView().certainAreaView(1)));
+        this.CGameView.getMainMenuView().getAreaTwoButton();
+        this.CGameView.getMainMenuView().getAreaThreeButton();
     }
 
     private void eventPickStarter(int nStarterNum) {
-        this.CStage.setScene(CGameView.getStarterCreatureView().starterAdded(CGameModel.pickStarter(nStarterNum)));
-        this.CStage.show();
+        this.setScene(CGameView.getStarterCreatureView().starterAdded(CGameModel.pickStarter(nStarterNum)));
         this.sleep(1);
         this.CGameModel.getSound().play("PkmRS_Littleroot.wav");
-        this.CStage.setScene(CGameView.getMainMenuView().mainMenu());
-        this.CStage.show();
+        this.setScene(CGameView.getMainMenuView().mainMenu());
     }
 
-    private void eventExploreArea() {
-        this.CStage.setScene(this.CGameView.getMainMenuView().areaPickerMenu());
+    public void setScene(Scene CScene) {
+        this.CStage.setScene(CScene);
         this.CStage.show();
     }
 
@@ -73,4 +74,5 @@ public class GameController {
             e.printStackTrace();
         }
     }
+
 }

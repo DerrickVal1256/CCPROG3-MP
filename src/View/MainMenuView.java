@@ -194,7 +194,7 @@ public class MainMenuView {
         StackPane.setAlignment(CRectangle, Pos.CENTER);
         StackPane.setMargin(CRectangle, new Insets(10, 10, 10, 10));
 
-        Text CMenuTitle = new Text("Pick an Area \n to Explore");
+        Text CMenuTitle = new Text("Pick an Area to Explore");
         CMenuTitle.setFont(Font.font("Pokemon Hollow", 40));
         StackPane.setAlignment(CMenuTitle, Pos.TOP_CENTER);
         StackPane.setMargin(CMenuTitle, new Insets(200, 10, 10, 10));
@@ -211,6 +211,8 @@ public class MainMenuView {
         this.CAreaOneButton.setGraphic(CAreaOneBox);
         this.CAreaOneButton.setStyle(strExitStyle);
 
+//        this.CAreaOneButton.setText(" Area One ");
+
         /* Area Two Button */
 
         Text CAreaTwoText = new Text(" Area Two ");
@@ -223,6 +225,8 @@ public class MainMenuView {
         this.CAreaTwoButton.setGraphic(CAreaTwoBox);
         this.CAreaTwoButton.setStyle(strExitStyle);
 
+//        this.CAreaTwoButton.setText(" Area Two ");
+
         /* Area Three Button */
 
         Text CAreaThreeText = new Text(" Area Three ");
@@ -234,6 +238,8 @@ public class MainMenuView {
 
         this.CAreaThreeButton.setGraphic(CAreaThreeBox);
         this.CAreaThreeButton.setStyle(strExitStyle);
+
+//        this.CAreaThreeButton.setText(" Area Three ");
 
         CGridLayout.add(this.CAreaOneButton, 0, 0);
         CGridLayout.add(this.CAreaTwoButton, 0, 1);
@@ -254,25 +260,11 @@ public class MainMenuView {
 
         CStackPane.getChildren().addAll(CRectangle, CMenuTitle);
 
-        CMainStackPane.getChildren().addAll(CGridLayout, CStackPane);
+//        CMainStackPane.getChildren().addAll(CGridLayout, CStackPane);
+//
+//        Scene CAreaPickerMenu = new Scene(CMainStackPane, 1920, 1080);
 
-        Scene CAreaPickerMenu = new Scene(CMainStackPane, 1920, 1080);
-
-        return CAreaPickerMenu;
-    }
-
-    /**
-    * Displays the area selection menu.
-    */
-    public void areas(){
-        System.out.println("\t\t\t+-------------------+");
-        System.out.println("\t\t\t|       Areas       |");
-        System.out.println("\t\t\t|                   |");
-        System.out.println("\t\t\t|        [1]        |");
-        System.out.println("\t\t\t|        [2]        |");
-        System.out.println("\t\t\t|        [3]        |");
-        System.out.println("\t\t\t|                   |");
-        System.out.println("\t\t\t+-------------------+");
+        return new Scene(new StackPane(CGridLayout, CStackPane), 1920, 1080);
     }
 
     /**
@@ -322,15 +314,15 @@ public class MainMenuView {
         return this.CExitButton;
     }
 
-    public Button getCAreaOneButton() {
+    public Button getAreaOneButton() {
         return this.CAreaOneButton;
     }
 
-    public Button getCAreaTwoButton() {
+    public Button getAreaTwoButton() {
         return this.CAreaTwoButton;
     }
 
-    public Button getCAreaThreeButton() {
+    public Button getAreaThreeButton() {
         return this.CAreaThreeButton;
     }
 

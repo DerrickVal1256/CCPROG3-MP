@@ -52,13 +52,35 @@ public class Reader {
     * @return A map of creature names to corresponding creature objects.
     * @throws IOException if there is an error reading the file.
     */
-    public Map<String, Creatures> creatureFileReader() throws IOException{
+    public Map<String, Creatures> creatureEvo1FileReader() throws IOException{
         Map<String, Creatures> mapList = new HashMap<String, Creatures>();
         BufferedReader CBufferedReader = new BufferedReader(CReader);
         String strLine = "";
 
-        while((strLine = CBufferedReader.readLine()) != null){
+        while(!(strLine = CBufferedReader.readLine()).equals("Strawleon")){
             mapList.put(strLine, new Creatures(strLine, CBufferedReader.readLine(), CBufferedReader.readLine().charAt(0), Integer.parseInt(CBufferedReader.readLine())));
+        }
+        return mapList;
+    }
+
+    public Map<String, CreatureEvo2> creatureEvo2FileReader() throws IOException{
+        Map<String, CreatureEvo2> mapList = new HashMap<String, CreatureEvo2>();
+        BufferedReader CBufferedReader = new BufferedReader(CReader);
+        String strLine = "";
+
+        while(!(strLine = CBufferedReader.readLine()).equals("Strawizard")){
+            mapList.put(strLine, new CreatureEvo2(strLine, CBufferedReader.readLine(), CBufferedReader.readLine().charAt(0), Integer.parseInt(CBufferedReader.readLine())));
+        }
+        return mapList;
+    }
+
+    public Map<String, CreatureEvo3> creatureEvo3FileReader() throws IOException{
+        Map<String, CreatureEvo3> mapList = new HashMap<String, CreatureEvo3>();
+        BufferedReader CBufferedReader = new BufferedReader(CReader);
+        String strLine = "";
+
+        while((strLine = CBufferedReader.readLine()) != null){
+            mapList.put(strLine, new CreatureEvo3(strLine, CBufferedReader.readLine(), CBufferedReader.readLine().charAt(0), Integer.parseInt(CBufferedReader.readLine())));
         }
         return mapList;
     }

@@ -112,7 +112,9 @@ public class Inventory {
     * Returns the list of creatures in the inventory.
     * @return The list of creatures.
     */
-    public ArrayList<Creatures> getInventory(){
+    public ArrayList<Creatures> getCreatures(){
         return this.aInventoryList;
     }
+
+
 }

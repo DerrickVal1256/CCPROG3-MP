@@ -5,4 +5,5 @@ public class CreatureEvo2 extends Creatures {
         super(strName, strType, cFamily, nEvoLevel);
         super.bState = false;
     }
+
 }
