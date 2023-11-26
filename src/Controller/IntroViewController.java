@@ -26,7 +26,7 @@ public class IntroViewController {
             Parent CRoot = FXMLLoader.load(getClass().getResource("../View/StarterCreatureView.fxml"));
             PlayerData CPlayerDataHolder = PlayerData.getPlayerData();
 
-            CPlayerDataHolder.setCPlayer(CPlayer);
+            CPlayerDataHolder.setPlayer(CPlayer);
 
             Scene CScene = new Scene(CRoot);
             CStage.setScene(CScene);

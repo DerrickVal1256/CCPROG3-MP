@@ -10,7 +10,7 @@ public class Area {
     private ArrayList<Integer> nDimensions;
     private Reader CAreaReader;
     private Reader CCreatureReader;
-    private Creatures CCreatures;
+    private CreatureEvo1 CCreatures;
     private String strNumArea;
     private char[][] cBoard;
     private int nPlayerRow;
@@ -175,8 +175,8 @@ public class Area {
     * @throws IOException if there is an error during the battle phase.
     */
     public void battlePhase(Inventory CPlayerInventory, String strCreature, Sound CSound) throws IOException{
-        Creatures CEnemy = this.CCreatures.getCreatureMap().get(strCreature);
-        Creatures CPlayer = CPlayerInventory.getActive();
+        CreatureEvo1 CEnemy = this.CCreatures.getCreatureMap().get(strCreature);
+        CreatureEvo1 CPlayer = CPlayerInventory.getActive();
         Scanner CScanner = new Scanner(System.in);
         Random CRandom = new Random();
         int nActions = 0;

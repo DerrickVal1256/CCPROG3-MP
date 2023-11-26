@@ -7,15 +7,15 @@ import java.util.*;
 * It contains methods for reading dimensions and creature data from a file.
 */
 public class Reader {
-    private FileReader CReader;
+    private FileReader CFileReader;
 
     /**
     * This constructor initializes a new Reader with a given FileReader.
-    * @param CReader The FileReader to use for reading data.
+    * @param CFileReader The FileReader to use for reading data.
     * @throws IOException if there is an error creating the Reader.
     */
-    public Reader(FileReader CReader) throws IOException {
-        this.CReader = CReader;
+    public Reader(FileReader CFileReader) throws IOException {
+        this.CFileReader = CFileReader;
     }
 
     /**
@@ -26,7 +26,7 @@ public class Reader {
     */
     public ArrayList<Integer> dimensionFileReader(String strKey) throws IOException{
         ArrayList<Integer> nList = new ArrayList<>();
-        BufferedReader CBufferedReader = new BufferedReader(CReader);
+        BufferedReader CBufferedReader = new BufferedReader(this.CFileReader);
         String strLine = "";
         String strNextLine = "";
         String[] strNumberStrings = {"", ""};
@@ -52,20 +52,20 @@ public class Reader {
     * @return A map of creature names to corresponding creature objects.
     * @throws IOException if there is an error reading the file.
     */
-    public Map<String, Creatures> creatureEvo1FileReader() throws IOException{
-        Map<String, Creatures> mapList = new HashMap<String, Creatures>();
-        BufferedReader CBufferedReader = new BufferedReader(CReader);
+    public Map<String, CreatureEvo1> creatureEvo1FileReader() throws IOException{
+        Map<String, CreatureEvo1> mapList = new HashMap<String, CreatureEvo1>();
+        BufferedReader CBufferedReader = new BufferedReader(this.CFileReader);
         String strLine = "";
 
         while(!(strLine = CBufferedReader.readLine()).equals("Strawleon")){
-            mapList.put(strLine, new Creatures(strLine, CBufferedReader.readLine(), CBufferedReader.readLine().charAt(0), Integer.parseInt(CBufferedReader.readLine())));
+            mapList.put(strLine, new CreatureEvo1(strLine, CBufferedReader.readLine(), CBufferedReader.readLine().charAt(0), Integer.parseInt(CBufferedReader.readLine())));
         }
         return mapList;
     }
 
     public Map<String, CreatureEvo2> creatureEvo2FileReader() throws IOException{
         Map<String, CreatureEvo2> mapList = new HashMap<String, CreatureEvo2>();
-        BufferedReader CBufferedReader = new BufferedReader(CReader);
+        BufferedReader CBufferedReader = new BufferedReader(this.CFileReader);
         String strLine = "";
 
         while(!(strLine = CBufferedReader.readLine()).equals("Strawizard")){
@@ -76,7 +76,7 @@ public class Reader {
 
     public Map<String, CreatureEvo3> creatureEvo3FileReader() throws IOException{
         Map<String, CreatureEvo3> mapList = new HashMap<String, CreatureEvo3>();
-        BufferedReader CBufferedReader = new BufferedReader(CReader);
+        BufferedReader CBufferedReader = new BufferedReader(this.CFileReader);
         String strLine = "";
 
         while((strLine = CBufferedReader.readLine()) != null){

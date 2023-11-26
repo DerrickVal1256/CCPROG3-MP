@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class MainApplication extends Application {
     @Override
-    public void start(Stage CStage) throws Exception {
+    public void start(Stage CStage) {
 //        GameView CGameView = new GameView();
 //        GameModel CGameModel = new GameModel();
 //        GameController CGameController = new GameController(CGameView, CGameModel, CStage);
@@ -27,7 +27,7 @@ public class MainApplication extends Application {
             CStage.setResizable(false);
 
             CStage.setTitle("Creaturemon");
-                CStage.setScene(CScene);
+            CStage.setScene(CScene);
             CStage.show();
         } catch(Exception e) {
             e.printStackTrace();

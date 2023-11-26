@@ -13,7 +13,7 @@ public class PlayerData {
         return CPlayerDataInstance;
     }
 
-    public void setCPlayer(Player CPlayer) {
+    public void setPlayer(Player CPlayer) {
         this.CPlayer = CPlayer;
     }
 

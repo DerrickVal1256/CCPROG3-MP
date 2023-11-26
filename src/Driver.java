@@ -1,4 +1,4 @@
-import javafx.application.*;
+import javafx.application.Application;
 import Driver.*;
 /**
  * The driver class 

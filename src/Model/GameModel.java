@@ -12,7 +12,7 @@ public class GameModel {
     private Reader CReader;
     private Area CArea;
     private Player CPlayer;
-    private Map<String, Creatures> mapCreaturesEvo1;
+    private Map<String, CreatureEvo1> mapCreaturesEvo1;
     private Map<String, CreatureEvo2> mapCreaturesEvo2;
     private Map<String, CreatureEvo3> mapCreaturesEvo3;
 
@@ -72,7 +72,7 @@ public class GameModel {
             return strCreatureAdded;
         }
 
-        public Map<String, Creatures> getMapCreaturesEvo1(){
+        public Map<String, CreatureEvo1> getMapCreaturesEvo1(){
             return this.mapCreaturesEvo1;
         }
 
@@ -83,8 +83,8 @@ public class GameModel {
             return this.mapCreaturesEvo3;
         }
 
-        public Map<String, Creatures> getMapCreatures() {
-            Map<String, Creatures> mapCreatures = new HashMap<>();
+        public Map<String, CreatureEvo1> getMapCreatures() {
+            Map<String, CreatureEvo1> mapCreatures = new HashMap<>();
 
             mapCreatures.putAll(this.mapCreaturesEvo1);
             mapCreatures.putAll(this.mapCreaturesEvo2);
@@ -106,7 +106,7 @@ public class GameModel {
         }
         public ArrayList<String> passListCreature() {
             ArrayList<String> aCreatureNames = new ArrayList<>();
-            for(Creatures CCreatures : this.CPlayer.getPlayerInventory().getCreatures()) {
+            for(CreatureEvo1 CCreatures : this.CPlayer.getPlayerInventory().getCreatures()) {
                 aCreatureNames.add(CCreatures.getName());
             }
             return aCreatureNames;

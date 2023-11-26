@@ -5,20 +5,20 @@ import java.util.*;
 /**
 * This class represents a creature in the game.
 */
-public class Creatures {
+public class CreatureEvo1 {
     protected String strName;
     protected String strType;
     protected char cFamily;
     protected int nEvoLevel;
     protected boolean bState;
     protected Reader CReader;
-    protected Map<String, Creatures> mapCreatures;
+    protected Map<String, CreatureEvo1> mapCreatures;
 
     /**
     * Constructs a new, empty Creatures instance.
     */
-    public Creatures(String stName, String strType, char cFamily, int nEvoLevel) {
-        this.strName = stName;
+    public CreatureEvo1(String strName, String strType, char cFamily, int nEvoLevel) {
+        this.strName = strName;
         this.strType = strType;
         this.cFamily = cFamily;
         this.nEvoLevel = nEvoLevel;
@@ -38,8 +38,8 @@ public class Creatures {
         /*
          * this is used to generate a list of creatures based on the area number 
          */
-        for (Map.Entry<String, Creatures> CEntry : this.mapCreatures.entrySet()) {
-            Creatures CCreature = CEntry.getValue();
+        for (Map.Entry<String, CreatureEvo1> CEntry : this.mapCreatures.entrySet()) {
+            CreatureEvo1 CCreature = CEntry.getValue();
             if (CCreature.getLevel() <= nAreaNum) {
                 mapKeys.add(CCreature.getName());
             }
@@ -151,7 +151,7 @@ public class Creatures {
     * @return The map of creatures.
     * @throws IOException if there is an error during the map retrieval.
     */
-    public Map<String, Creatures> getCreatureMap() throws IOException{
+    public Map<String, CreatureEvo1> getCreatureMap() throws IOException{
         return this.mapCreatures;
     }
 }
