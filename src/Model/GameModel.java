@@ -21,9 +21,9 @@ public class GameModel {
     public GameModel() throws IOException {
         this.CReader = new Reader(new FileReader("CreaturesList.txt"));
         this.CArea = null;
-//        this.mapCreaturesEvo1 = this.CReader.creatureEvo1FileReader();
-        this.mapCreaturesEvo2 = this.CReader.creatureEvo2FileReader();
-        this.mapCreaturesEvo3 = this.CReader.creatureEvo3FileReader();
+        this.mapCreaturesEvo1 = this.CReader.getMapListEvo1();
+        this.mapCreaturesEvo2 = this.CReader.getMapListEvo2();
+        this.mapCreaturesEvo3 = this.CReader.getMapListEvo3();
         this.CPlayer = new Player();
         this.CSound = new Sound();
     }
