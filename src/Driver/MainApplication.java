@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.net.URL;
-
 public class MainApplication extends Application {
     @Override
     public void start(Stage CStage) {
@@ -18,13 +16,12 @@ public class MainApplication extends Application {
 
         try {
 //            URL resourceURL = getClass().getResource("../View/IntroView.fxml");
-            Parent CRoot = FXMLLoader.load(getClass().getResource("../View/IntroView.fxml"));
+            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewAndControllers/IntroView.fxml"));
             Scene CScene = new Scene(CRoot);
 //            System.out.println(resourceURL);
 
             Image FIcon = new Image("images/MenuImages/icon.png");
             CStage.getIcons().add(FIcon);
-            CStage.setResizable(false);
 
             CStage.setTitle("Creaturemon");
             CStage.setScene(CScene);
