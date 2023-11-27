@@ -233,17 +233,17 @@ public class Area {
                     nActions++;
                     break;
                 case 2: // Swap
-                    if(CPlayerInventory.getCreatures().size() != 1) {
-                        while(!CPlayerInventory.swapCreatures());
-                        nActions++;
-                    } else {
-                        System.out.println("\n\t\t\t-- You currently only have 1 creature in your inventory --\n");
-                        try {
-                        Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
+//                    if(CPlayerInventory.getCreatures().size() != 1) {
+//                        while(!CPlayerInventory.swapCreatures());
+//                        nActions++;
+//                    } else {
+//                        System.out.println("\n\t\t\t-- You currently only have 1 creature in your inventory --\n");
+//                        try {
+//                        Thread.sleep(1000);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
                     break;
                 case 3: // Catch
                     dCatchRate = (40 + 50 - nHP) * .100;

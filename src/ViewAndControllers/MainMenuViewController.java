@@ -1,5 +1,7 @@
 package ViewAndControllers;
 
+import Model.Player;
+import Model.PlayerData;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,9 @@ public class MainMenuViewController {
     @FXML
     private void viewInventoryButtonClicked(MouseEvent event) {
         try {
+            PlayerData CPlayerDataHolder = PlayerData.getPlayerData();
+            Player CPlayer = CPlayerDataHolder.getPlayer();
+            CPlayer.getPlayerInventory().printInventory();
             Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewAndControllers/InventoryView.fxml"));
             Scene CScene = new Scene(CRoot);
             Node CNode = (Node) event.getSource();
