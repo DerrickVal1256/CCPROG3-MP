@@ -58,7 +58,6 @@ public class Inventory {
     public CreatureEvo1 getActive() {
         for (CreatureEvo1 CCreature : aInventoryList) {
             if(CCreature.getStatus())
-                System.out.print(CCreature.getStatus());
                 return CCreature;
         }
         return null;
