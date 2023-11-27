@@ -5,11 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be19c9e8-c771-46fd-8afd-371bfb6bce11" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/InventoryViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Driver/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Area.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Area.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/CCPROG3-MP/out/production/CCPROG3-MP/ViewAndControllers/InventoryView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/CCPROG3-MP/out/production/CCPROG3-MP/ViewAndControllers/InventoryView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/Controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/Driver/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/Driver/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/Model/GameModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/Model/GameModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewAndControllers/AreaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewsAndControllers/AreaView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewAndControllers/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewsAndControllers/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewAndControllers/IntroView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewsAndControllers/IntroView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewAndControllers/IntroViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewsAndControllers/IntroViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewAndControllers/InventoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewsAndControllers/InventoryView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewAndControllers/MainMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewsAndControllers/MainMenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewAndControllers/MainMenuViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewsAndControllers/MainMenuViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewAndControllers/StarterCreatureView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewsAndControllers/StarterCreatureView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewAndControllers/StarterCreatureView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewsAndControllers/StarterCreatureView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewAndControllers/StarterCreatureViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CCPROG3-MP/src/ViewsAndControllers/StarterCreatureViewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +39,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
