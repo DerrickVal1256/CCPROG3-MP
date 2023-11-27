@@ -1,4 +1,4 @@
-package ViewAndControllers;
+package ViewsAndControllers;
 
 import Model.Player;
 import Model.PlayerData;
@@ -19,7 +19,7 @@ public class MainMenuViewController {
             PlayerData CPlayerDataHolder = PlayerData.getPlayerData();
             Player CPlayer = CPlayerDataHolder.getPlayer();
             CPlayer.getPlayerInventory().printInventory();
-            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewAndControllers/InventoryView.fxml"));
+            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/InventoryView.fxml"));
             Scene CScene = new Scene(CRoot);
             Node CNode = (Node) event.getSource();
             Stage CStage = (Stage) CNode.getScene().getWindow();
@@ -34,7 +34,7 @@ public class MainMenuViewController {
     @FXML
     private void exploreAreaButtonClicked(MouseEvent event) {
         try {
-            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewAndControllers/ExploreAreaMenuView.fxml"));
+            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/ExploreAreaMenuView.fxml"));
             Scene CScene = new Scene(CRoot);
             Node CNode = (Node) event.getSource();
             Stage CStage = (Stage) CNode.getScene().getWindow();
@@ -49,7 +49,7 @@ public class MainMenuViewController {
     @FXML
     private void evolveButtonClicked(MouseEvent event) {
         try {
-            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewAndControllers/EvolveMenuView.fxml"));
+            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/EvolveMenuView.fxml"));
             Scene CScene = new Scene(CRoot);
             Node CNode = (Node) event.getSource();
             Stage CStage = (Stage) CNode.getScene().getWindow();

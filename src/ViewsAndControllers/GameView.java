@@ -1,4 +1,4 @@
-package ViewAndControllers;
+package ViewsAndControllers;
 
 public class GameView {
     private StarterCreatureView CStarterCreatureView;

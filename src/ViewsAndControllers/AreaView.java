@@ -1,4 +1,4 @@
-package ViewAndControllers;
+package ViewsAndControllers;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

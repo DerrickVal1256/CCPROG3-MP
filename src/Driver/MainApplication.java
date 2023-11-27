@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.net.URL;
+
 public class MainApplication extends Application {
     @Override
     public void start(Stage CStage) {
@@ -15,10 +17,10 @@ public class MainApplication extends Application {
 //        GameController CGameController = new GameController(CGameView, CGameModel, CStage);
 
         try {
-//            URL resourceURL = getClass().getResource("../View/IntroView.fxml");
-            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewAndControllers/IntroView.fxml"));
+            URL resourceURL = getClass().getResource("../ViewsAndControllers/ExploreAreaMenuView.fxml");
+            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/IntroView.fxml"));
             Scene CScene = new Scene(CRoot);
-//            System.out.println(resourceURL);
+            System.out.println(resourceURL);
 
             Image FIcon = new Image("images/MenuImages/icon.png");
             CStage.getIcons().add(FIcon);

@@ -1,6 +1,6 @@
 package Model;
 
-import ViewAndControllers.MainMenuView;
+import ViewsAndControllers.MainMenuView;
 
 import java.io.FileReader;
 import java.io.IOException;

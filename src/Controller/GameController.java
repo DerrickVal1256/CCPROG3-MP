@@ -1,6 +1,6 @@
 package Controller;
 import Model.GameModel;
-import ViewAndControllers.GameView;
+import ViewsAndControllers.GameView;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;

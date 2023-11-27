@@ -1,4 +1,4 @@
-package ViewAndControllers;
+package ViewsAndControllers;
 
 import Model.CreatureEvo1;
 import Model.Player;
@@ -105,7 +105,7 @@ public class StarterCreatureViewController {
     @FXML
     private void showMainMenu(ActionEvent event) {
         try {
-            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewAndControllers/MainMenuView.fxml")); // change to Main Menu View
+            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/MainMenuView.fxml")); // change to Main Menu View
             Scene CScene = new Scene(CRoot);
             Node CNode = (Node) event.getSource();
             Stage CStage = (Stage) CNode.getScene().getWindow();

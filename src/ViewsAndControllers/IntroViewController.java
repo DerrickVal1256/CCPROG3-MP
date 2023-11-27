@@ -1,4 +1,4 @@
-package ViewAndControllers;
+package ViewsAndControllers;
 
 import Model.Player;
 import Model.PlayerData;
@@ -23,7 +23,7 @@ public class IntroViewController {
         CPlayer.setName(getUsernameTextField.getText());
         Stage CStage = (Stage) getUsernameTextField.getScene().getWindow();
         try {
-            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewAndControllers/StarterCreatureView.fxml"));
+            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/StarterCreatureView.fxml"));
             PlayerData CPlayerDataHolder = PlayerData.getPlayerData();
 
             CPlayerDataHolder.setPlayer(CPlayer);

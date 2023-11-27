@@ -1,4 +1,4 @@
-package ViewAndControllers;
+package ViewsAndControllers;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

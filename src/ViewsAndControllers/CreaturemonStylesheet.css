@@ -1,0 +1,28 @@
+.button {
+    -fx-background-color: transparent;
+    -fx-padding: 12px;
+}
+
+.button:hover {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 12px;
+}
+
+.Button {
+    -fx-background-color: transparent;
+    -fx-padding: 12px;
+}
+
+.Button:hover {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 12px;
+}
+
+.HBox {
+    -fx-border-color: black;
+    -fx-border-width: 2px
+}
+
+.text {
+    -fx-font-weight: bold;
+}
