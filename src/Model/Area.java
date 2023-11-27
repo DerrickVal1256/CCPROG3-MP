@@ -234,7 +234,7 @@ public class Area {
                     break;
                 case 2: // Swap
                     if(CPlayerInventory.getCreatures().size() != 1) {
-                        while(!CPlayerInventory.swapCreatures());
+                        //while(!CPlayerInventory.swapCreatures());
                         nActions++;
                     } else {
                         System.out.println("\n\t\t\t-- You currently only have 1 creature in your inventory --\n");

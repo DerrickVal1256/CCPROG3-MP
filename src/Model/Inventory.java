@@ -32,20 +32,15 @@ public class Inventory {
     * Sets a creature in the inventory to active.
     * @param nInput The index of the creature to activate.
     */
-    public void activeCreature(int nInput){
-        if(nInput >= 0 && nInput < aInventoryList.size()) {
-            // Set the creature at the input index to active
-            aInventoryList.get(nInput).setStatus(true);
-            
-            // Loop through the ArrayList
-            for (int x = 0; x < aInventoryList.size(); x++) {
-                // If the index is not equal to the input
-                if (x != nInput) {
-                    // Set the creature at this index to inactive
-                    aInventoryList.get(x).setStatus(false);
-                }
+    public void activeCreature(String strCreatureName){
+        int i = 0;
+        while(!(aInventoryList.get(i).getName().equals(strCreatureName))){
+            i++;
+            if(aInventoryList.get(i).getName().equals(strCreatureName)){
+                getActive().setStatus(false);
+                aInventoryList.get(i).setStatus(true);
             }
-        } 
+        }
     }
 
     /**
@@ -64,19 +59,12 @@ public class Inventory {
     * Swaps the currently active creature with another creature in the inventory.
     * @return true if the swap was successful, false otherwise.
     */
-    public boolean swapCreatures() {
-        Scanner CScanner = new Scanner(System.in);
-        printInventory();
-        System.out.println();
-        System.out.print("\t\t\tSelect your Creature: ");
-        int nSwapTo = CScanner.nextInt();
-        if(nSwapTo > aInventoryList.size() || nSwapTo <= 0){
-            System.out.println("\t\t\t-- Invalid Index! -- ");
-            return false;
-        } else {
-            activeCreature(nSwapTo - 1);
-            System.out.println("\n\t\t\t" + getActive().getName() + " is now active!\n");
+    public boolean swapCreatures(String strCreatureName) {
+        if(!getSpecificCreature(strCreatureName).getStatus()){
+            activeCreature(strCreatureName);
             return true;
+        } else {
+            return false;
         }
     }
 

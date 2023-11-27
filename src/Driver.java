@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 import javafx.application.*;
 import Driver.*;
+=======
+import javafx.application.Application;
+import Driver.MainApplication;
+>>>>>>> Stashed changes
 /**
  * The driver class 
  */
