@@ -11,8 +11,6 @@ public class CreatureEvo1 {
     protected char cFamily;
     protected int nEvoLevel;
     protected boolean bState;
-    protected Reader CReader;
-    protected Map<String, CreatureEvo1> mapCreatures;
 
     /**
     * Constructs a new, empty Creatures instance.
@@ -23,33 +21,6 @@ public class CreatureEvo1 {
         this.cFamily = cFamily;
         this.nEvoLevel = nEvoLevel;
         this.bState = false;
-    }
-
-    /**
-    * Returns a random creature based on the area number.
-    * @param nAreaNum The number of the area.
-    * @return The name of the random creature.
-    * @throws IOException if there is an error during the creature selection.
-    */
-    public String randomCreature(int nAreaNum) throws IOException{
-        Random random = new Random();
-        Set<String> mapKeys = new HashSet<String>();
-        int randomIndex = 0;
-        /*
-         * this is used to generate a list of creatures based on the area number 
-         */
-        for (Map.Entry<String, CreatureEvo1> CEntry : this.mapCreatures.entrySet()) {
-            CreatureEvo1 CCreature = CEntry.getValue();
-            if (CCreature.getLevel() <= nAreaNum) {
-                mapKeys.add(CCreature.getName());
-            }
-        }
-
-        String[] strKeys = mapKeys.toArray(new String[0]);
-
-        randomIndex = random.nextInt(strKeys.length);
-
-        return strKeys[randomIndex];
     }
 
     /**
@@ -146,12 +117,4 @@ public class CreatureEvo1 {
         return this.bState;
     }
 
-    /**
-    * Returns the map of creatures.
-    * @return The map of creatures.
-    * @throws IOException if there is an error during the map retrieval.
-    */
-    public Map<String, CreatureEvo1> getCreatureMap() throws IOException{
-        return this.mapCreatures;
-    }
 }

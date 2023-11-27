@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewsAndControllers.AreaOneViewController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8e98a1" height="1080.0" stroke="BLACK" strokeType="INSIDE" width="1920.0" />
       <AnchorPane layoutX="14.0" layoutY="290.0" prefHeight="500.0" prefWidth="534.0" AnchorPane.bottomAnchor="290.0" AnchorPane.topAnchor="290.0">
@@ -22,7 +22,7 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" height="150.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
                </children>
             </StackPane>
-            <Button layoutX="342.0" layoutY="177.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="146.0" prefWidth="150.0">
+            <Button layoutX="342.0" layoutY="177.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#rightButtonClicked" prefHeight="146.0" prefWidth="150.0">
                <graphic>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
                      <children>
@@ -36,7 +36,7 @@
                   </StackPane>
                </graphic>
             </Button>
-            <Button layoutX="42.0" layoutY="177.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="146.0" prefWidth="150.0">
+            <Button layoutX="42.0" layoutY="177.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#leftButtonClicked" prefHeight="146.0" prefWidth="150.0">
                <graphic>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0">
                      <children>
@@ -54,7 +54,13 @@
       </AnchorPane>
       <AnchorPane layoutX="527.0" layoutY="141.0" prefHeight="810.0" prefWidth="867.0" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="527.0" AnchorPane.rightAnchor="526.0" AnchorPane.topAnchor="141.0">
          <children>
-            <GridPane layoutX="20.0" layoutY="315.0" prefHeight="170.0" prefWidth="900.0" AnchorPane.bottomAnchor="325.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="315.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" stroke="BLACK" strokeType="INSIDE" width="150.0" AnchorPane.topAnchor="315.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" layoutX="145.0" stroke="BLACK" strokeType="INSIDE" width="150.0" AnchorPane.topAnchor="315.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" layoutX="288.0" stroke="BLACK" strokeType="INSIDE" width="150.0" AnchorPane.topAnchor="315.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" layoutX="432.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="150.0" AnchorPane.topAnchor="315.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" layoutX="575.0" layoutY="144.0" stroke="BLACK" strokeType="INSIDE" width="150.0" AnchorPane.topAnchor="315.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" layoutX="722.0" stroke="BLACK" strokeType="INSIDE" width="150.0" AnchorPane.topAnchor="315.0" />
+            <GridPane fx:id="CGridPane" layoutX="20.0" layoutY="315.0" prefHeight="170.0" prefWidth="900.0" AnchorPane.bottomAnchor="325.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="315.0">
                <columnConstraints>
                   <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="150.0" />
                   <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="150.0" />
@@ -67,32 +73,14 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="200.0">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
-                        <ImageView fitHeight="102.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                           <image>
-                              <Image url="@../images/MenuImages/vaporeon.gif" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </StackPane>
-                  <StackPane prefHeight="171.0" prefWidth="180.0" GridPane.columnIndex="1">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
-                     </children>
-                  </StackPane>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
-                     </children>
-                  </StackPane>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" stroke="BLACK" strokeType="INSIDE" width="151.0" GridPane.columnIndex="3" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="4" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c7ffb5" height="171.0" stroke="BLACK" strokeType="INSIDE" width="150.0" GridPane.columnIndex="5" />
+                  <ImageView fx:id="CPlayerImageView" fitHeight="102.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0">
+                     <image>
+                        <Image url="@../images/MenuImages/vaporeon.gif" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
-            <StackPane layoutX="310.0" layoutY="194.0" prefHeight="90.0" prefWidth="242.0">
+            <StackPane layoutX="310.0" layoutY="194.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="242.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" stroke="BLACK" strokeType="INSIDE" width="247.0" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Area One" textAlignment="CENTER">
@@ -102,7 +90,7 @@
                   </Text>
                </children>
             </StackPane>
-            <StackPane layoutX="310.0" layoutY="503.0" prefHeight="90.0" prefWidth="242.0">
+            <StackPane layoutX="310.0" layoutY="503.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#exitButtonClicked" prefHeight="90.0" prefWidth="242.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" stroke="BLACK" strokeType="INSIDE" width="247.0" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="exit" textAlignment="JUSTIFY" wrappingWidth="99.609375">

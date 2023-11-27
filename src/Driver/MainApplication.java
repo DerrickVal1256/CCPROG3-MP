@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.net.URL;
 
 public class MainApplication extends Application {
@@ -17,7 +16,7 @@ public class MainApplication extends Application {
 //        GameController CGameController = new GameController(CGameView, CGameModel, CStage);
 
         try {
-            URL resourceURL = getClass().getResource("../ViewsAndControllers/ExploreAreaMenuView.fxml");
+            URL resourceURL = getClass().getResource("../ViewsAndControllers/BattleView.fxml");
             Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/IntroView.fxml"));
             Scene CScene = new Scene(CRoot);
             System.out.println(resourceURL);
@@ -26,6 +25,7 @@ public class MainApplication extends Application {
             CStage.getIcons().add(FIcon);
 
             CStage.setTitle("Creaturemon");
+            CStage.setResizable(false);
             CStage.setScene(CScene);
             CStage.show();
         } catch(Exception e) {
