@@ -7,173 +7,36 @@ import java.util.*;
  * It maintains the state of the area, including dimensions, the current state of the board, and the player's position.
  */
 public class Area {
-    private ArrayList<Integer> nDimensions;
-    private Reader CAreaReader;
-    private Reader CCreatureReader;
-    private CreatureEvo1 CCreatures;
     private String strNumArea;
-    private char[][] cBoard;
-    private int nPlayerRow;
-    private int nPlayerCol;
-//    private MenuView CDisplay;
-    private Sound CSound;
 
-    /**
-    * This constructor initializes a new area with a given number.
-    * @param strNumArea The number of the area.
-    * @throws IOException if there is an error reading the area dimensions or creature data.
-    */
-    public Area(String strNumArea) throws IOException{
-        this.CAreaReader = new Reader(new FileReader("AreaDimensions.txt"));
-//        this.CCreatures = new Creatures(this.CCreatureReader);
-        this.setNumArea(strNumArea);
-        this.setDimensions();
-        this.cBoard = new char[nDimensions.get(0)][nDimensions.get(1)];
-        this.nPlayerRow = 0;
-        this.nPlayerCol = 0;
-        this.initializeArea();
-        this.CSound = new Sound();
+    private List<CreatureEvo1> aCreatureList;
+
+//    /**
+//    * This constructor initializes a new area with a given number.
+//    * @param strNumArea The number of the area.
+//    * @throws IOException if there is an error reading the area dimensions or creature data.
+//    */
+    public Area(String strNumArea) {
+        try {
+            aCreatureList = new ArrayList<>();
+            this.initializeCreatureList(strNumArea);
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
+
     }
 
-    /**
-    * This method initializes the area by setting all positions to '.', except the player's position, which is set to 'P'.
-    */
-    private void initializeArea() {
-        for(int i = 0; i < cBoard.length; i++) {
-            for(int j = 0; j < cBoard[i].length; j++) {
-                cBoard[i][j] = '.';
-            }
-        }
-        cBoard[nPlayerRow][nPlayerCol] = 'P';
-    }
 
-    /**
-    * This method prints the current state of the area to the console.
-    */
-    public void printArea() {
-        // Print the top border
-        System.out.print("\t\t\t    ");
-        for(int i = 0; i < cBoard[0].length + 2; i++) {
-            System.out.print("- ");
-        }
-        System.out.println();
-
-        // Print the side borders
-        for(int i = 0; i < cBoard.length; i++) {
-            System.out.print("\t\t\t    | ");
-            for(int j = 0; j < cBoard[i].length; j++) {
-                System.out.print(cBoard[i][j] + " ");
-            }
-            System.out.println("|");
-        }
-        System.out.print("\t\t\t    ");
-        // Print the bottom border
-        for(int i = 0; i < cBoard[0].length + 2; i++) {
-            System.out.print("- ");
-        }
-        System.out.println();
-    }
-
-    /**
-     * This method moves the player in the area according to a given move and potentially triggers a battle with a creature.
-     * @param CPlayerInventory The player's inventory.
-     * @param nPlayerMove The move to make (1: UP, 2: DOWN, 3: LEFT, 4: RIGHT).
-     * @param nAreaNum The number assigned to the area
-     * @param CSound The sound utility class to play sounds
-     * @throws IOException if there is an error during the battle phase.
-     */
-//    public void movePlayer(Inventory CPlayerInventory, int nPlayerMove, int nAreaNum, Sound CSound) throws IOException{
-//        int nRow = nPlayerRow;
-//        int nCol = nPlayerCol;
-//        String randomCreature;
-//
-//        if(CSound.getClip().getFramePosition() == 0)
-//            CSound.play("Model/PkmRS_Littleroot.wav");
-//
-//        switch(nPlayerMove){
-//            case 1: // UP
-//                nRow--;
-//                if(nRow >= 0) {
-//                    cBoard[nPlayerRow][nPlayerCol] = '.';
-//                    nPlayerRow = nRow;
-//                    cBoard[nPlayerRow][nPlayerCol] = 'P';
-//                    if(creatureSpawning()) {
-//                        randomCreature = CCreatures.randomCreature(nAreaNum);
-//                        System.out.println("\t\t\tA wild " + randomCreature + " has appeared!");
-//                        battlePhase(CPlayerInventory, randomCreature, CSound);
-//                    }
-//                } else {
-//                    System.out.println("\t\t\t-- Invalid Move! --");
-//                }
-//
-//                break;
-//            case 2: // DOWN
-//                nRow++;
-//                if(nRow < nDimensions.get(0)) {
-//                    cBoard[nPlayerRow][nPlayerCol] = '.';
-//                    nPlayerRow = nRow;
-//                    cBoard[nPlayerRow][nPlayerCol] = 'P';
-//                    if(creatureSpawning()) {
-//                        randomCreature = CCreatures.randomCreature(nAreaNum);
-//                        System.out.println("\t\t\tA wild " + randomCreature + " has appeared!");
-//                        battlePhase(CPlayerInventory, randomCreature, CSound);
-//                    }
-//                } else {
-//                    System.out.println("\t\t\t-- Invalid Move! --");
-//                }
-//                break;
-//            case 3: // LEFT
-//                nCol--;
-//                if(nCol >= 0) {
-//                    cBoard[nPlayerRow][nPlayerCol] = '.';
-//                    nPlayerCol = nCol;
-//                    cBoard[nPlayerRow][nPlayerCol] = 'P';
-//                    if(creatureSpawning()) {
-//                        randomCreature = CCreatures.randomCreature(nAreaNum);
-//                        System.out.println("\t\t\tA wild " + randomCreature + " has appeared!");
-//                        battlePhase(CPlayerInventory, randomCreature, CSound);
-//                    }
-//                } else {
-//                    System.out.println("\t\t\t-- Invalid Move! --");
-//                }
-//                break;
-//            case 4: // RIGHT
-//                nCol++;
-//                if(nCol < nDimensions.get(1)) {
-//                    cBoard[nPlayerRow][nPlayerCol] = '.';
-//                    nPlayerCol = nCol;
-//                    cBoard[nPlayerRow][nPlayerCol] = 'P';
-//                    if(creatureSpawning()) {
-//                        randomCreature = CCreatures.randomCreature(nAreaNum);
-//                        System.out.println("\t\t\tA wild " + randomCreature + " has appeared!");
-//                        battlePhase(CPlayerInventory, randomCreature, CSound);
-//                    }
-//                } else {
-//                    System.out.println("\t\t\t-- Invalid Move! --");
-//                }
-//                break;
-//            case 5: // LEAVE
-//                cBoard[nPlayerRow][nPlayerCol] = '.';
-//                nPlayerCol = 0;
-//                nPlayerRow = 0;
-//                cBoard[nPlayerRow][nPlayerCol] = 'P';
-//                break;
-//            default: // OUT OF BOUNDS
-//                System.out.println("\t\t\t-- Input out of bounds! -- ");
-//                break;
-//        }
-//    }
-
-    /**
-    * This method handles the battle phase when a creature is encountered.
-    * It implements the logic for the player's actions, including attacking, swapping creatures, 
-    * catching creatures, and running away. It also handles the creature's health, 
-    * the possibility of the creature fleeing, and the end of the battle phase.
-    * @param CPlayerInventory The player's inventory.
-    * @param strCreature The name of the encountered creature.
-    * @param CSound The sound object used for playing sounds during the battle.
-    * @throws IOException if there is an error during the battle phase.
-    */
+//    /**
+//    * This method handles the battle phase when a creature is encountered.
+//    * It implements the logic for the player's actions, including attacking, swapping creatures,
+//    * catching creatures, and running away. It also handles the creature's health,
+//    * the possibility of the creature fleeing, and the end of the battle phase.
+//    * @param CPlayerInventory The player's inventory.
+//    * @param strCreature The name of the encountered creature.
+//    * @param CSound The sound object used for playing sounds during the battle.
+//    * @throws IOException if there is an error during the battle phase.
+//    */
 //    public void battlePhase(Inventory CPlayerInventory, String strCreature, Sound CSound) throws IOException{
 //        CreatureEvo1 CEnemy = this.CCreatures.getCreatureMap().get(strCreature);
 //        CreatureEvo1 CPlayer = CPlayerInventory.getActive();
@@ -311,25 +174,30 @@ public class Area {
 //        this.CSound.stop();
 //    }
 
-   /**
-    * This method determines if the player's creature is stronger than the enemy creature based on their types.
-    * @param strPlayerType The type of the player's creature.
-    * @param strEnemyType The type of the enemy creature.
-    * @return true if the player's creature is stronger, false otherwise.
-    */
-    private boolean isEnemyWeaker(String strPlayerType, String strEnemyType) {
-        switch(strPlayerType) {
-            case "Fire":
-                if(strEnemyType.equals("Grass"))
-                    return true;
-            case "Grass":
-                if(strEnemyType.equals("Water")) 
-                    return true;
-            case "Water":
-                if(strEnemyType.equals("Fire")) 
-                    return true;
+    public void initializeCreatureList(String strNumArea) throws IOException {
+        Reader CReader = new Reader(new FileReader("CreaturesList.txt"));
+
+        switch (strNumArea) {
+            case "Area One" -> {
+                this.aCreatureList.addAll(CReader.getMapCreatures1().values());
+            }
+            case "Area Two" -> {
+                this.aCreatureList.addAll(CReader.getMapCreatures1().values());
+                this.aCreatureList.addAll(CReader.getMapCreatures2().values());
+            }
+            case "Area Three" -> {
+                this.aCreatureList.addAll(CReader.getMapCreatures1().values());
+                this.aCreatureList.addAll(CReader.getMapCreatures2().values());
+                this.aCreatureList.addAll(CReader.getMapCreatures3().values());
+            }
         }
-        return false;
+    }
+
+    public CreatureEvo1 randomCreature() {
+        // Choose a random creature from the list
+        Random CRandom = new Random();
+        int randomIndex = CRandom.nextInt(aCreatureList.size());
+        return this.aCreatureList.get(randomIndex);
     }
 
     /**
@@ -373,20 +241,5 @@ public class Area {
         return this.strNumArea;
     }
 
-    /**
-    * This method sets the dimensions of the area based on the area number.
-    * @throws IOException if there is an error reading the dimensions file.
-    */
-    public void setDimensions() throws IOException{
-        this.nDimensions = CAreaReader.dimensionFileReader(this.strNumArea);
-    }
-
-    /**
-    * This method gets the dimensions of the area.
-    * @return The dimensions of the area.
-    */
-    public ArrayList<Integer> getDimensions(){
-        return this.nDimensions;
-    }
     
 }

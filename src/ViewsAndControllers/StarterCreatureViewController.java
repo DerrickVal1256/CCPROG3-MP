@@ -93,7 +93,7 @@ public class StarterCreatureViewController {
             Reader CReader = new Reader(new FileReader("CreaturesList.txt"));
             PlayerData CPlayerDataHolder = PlayerData.getPlayerData();
 
-            mapEvoOneCreatures = CReader.creatureEvo1FileReader();
+            mapEvoOneCreatures = CReader.getMapCreatures1();
             CPlayer.getPlayerInventory().addCreature(mapEvoOneCreatures.get(strCreatureName));
             CPlayerDataHolder.setPlayer(CPlayer);
 

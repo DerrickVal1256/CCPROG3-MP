@@ -49,7 +49,7 @@ public class MainMenuViewController {
     @FXML
     private void evolveButtonClicked(MouseEvent event) {
         try {
-            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/EvolveMenuView.fxml"));
+            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/EvolutionView.fxml"));
             Scene CScene = new Scene(CRoot);
             Node CNode = (Node) event.getSource();
             Stage CStage = (Stage) CNode.getScene().getWindow();

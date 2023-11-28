@@ -125,7 +125,7 @@
             <StackPane layoutX="230.0" layoutY="54.0" prefHeight="90.0" prefWidth="242.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" stroke="BLACK" strokeType="INSIDE" width="247.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Area Two" textAlignment="CENTER">
+                  <Text fx:id="CAreaNum" strokeType="OUTSIDE" strokeWidth="0.0" text="Area Two" textAlignment="CENTER">
                      <font>
                         <Font name="Pokemon Hollow Normal" size="48.0" />
                      </font>

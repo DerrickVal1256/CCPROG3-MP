@@ -1,50 +1,64 @@
 package Model;
-import javax.sound.sampled.*;
-import java.io.*;
-import java.net.URL;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
 
 /**
-* This class is responsible for playing sound effects in the game.
-*/
+ * This class is responsible for playing sound effects in the game.
+ */
 public class Sound {
-    private URL CUrl;
-    private Clip CClip;
 
-    public Sound() {
-        this.CUrl = null;
-        this.CClip = null;
+    private static Sound instance;
+    private MediaPlayer mediaPlayer;
+
+    private Sound() {
+        this.mediaPlayer = null;
+    }
+
+    public static synchronized Sound getInstance() {
+        if (instance == null) {
+            instance = new Sound();
+        }
+        return instance;
     }
 
     /**
      * Plays a sound effect.
-     * @param strRequestedSound The name of the sound effect to play.
+     *
+     * @param strFileName The name of the sound effect to play.
+     * @param nCycleCount The number of cycles to play the sound (use -1 for indefinite).
      */
-    public void play(String strRequestedSound){
-        this.CUrl = this.getClass().getResource(strRequestedSound);
-        if(this.CUrl != null) {
-            try {
-               AudioInputStream audioInput = AudioSystem.getAudioInputStream(CUrl);
-                this.CClip = AudioSystem.getClip();
-                this.CClip.open(audioInput);
-                this.CClip.start();
-            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-                e.printStackTrace();
-            }
+    public void play(String strFileName, int nCycleCount) {
+        String strPath = getClass().getResource(strFileName).getPath();
+        Media media = new Media(new File(strPath).toURI().toString());
+
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
         }
+
+        mediaPlayer = new MediaPlayer(media);
+
+        if (nCycleCount == -1) {
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        } else {
+            mediaPlayer.setCycleCount(nCycleCount);
+        }
+
+        mediaPlayer.play();
     }
-    
-    /**
-     * Stops the current sound effect.
-     */
-    public void stop(){
-        this.CClip.stop();
+
+    public MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
     }
 
     /**
-     * Returns the current Clip.
-     * @return The current Clip.
+     * Stops the current sound effect.
      */
-    public Clip getClip() {
-        return this.CClip;
+    public void stop() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
     }
 }

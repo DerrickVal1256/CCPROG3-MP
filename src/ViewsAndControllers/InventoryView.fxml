@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -14,56 +13,108 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewsAndControllers.InventoryViewController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#84898e" height="909.0" layoutX="541.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" width="830.0" />
-      <Text fill="#dc0000" layoutX="833.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" AnchorPane.leftAnchor="830.0" AnchorPane.rightAnchor="834.0046875">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fbc3c6" height="909.0" layoutX="541.0" layoutY="69.0" stroke="BLACK" strokeType="INSIDE" width="830.0" />
+      <Text fill="#f75062" layoutX="833.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" AnchorPane.leftAnchor="830.0" AnchorPane.rightAnchor="834.0046875">
          <font>
             <Font name="Pokemon Solid Normal" size="48.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="CCreatureChoiceBox" layoutX="823.0" layoutY="235.0" prefHeight="26.0" prefWidth="264.0" />
-      <VBox layoutX="620.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" styleClass="vbox">
+      <ChoiceBox fx:id="CCreatureChoiceBox" layoutX="824.0" layoutY="226.0" prefHeight="26.0" prefWidth="264.0" />
+      <VBox layoutX="620.0" layoutY="279.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" styleClass="vbox">
          <children>
-            <ImageView fx:id="CCreatureImage1" fitHeight="196.0" fitWidth="250.0" pickOnBounds="true" styleClass="vbox">
-               <image>
-                  <Image url="@../../../../CCPROG3-MP/src/images/A/1.png" />
-               </image></ImageView>
+            <ImageView fx:id="CCreatureImage1" fitHeight="196.0" fitWidth="250.0" pickOnBounds="true" styleClass="vbox" />
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Rectangle fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
-                  <Label fx:id="CCreatureName1" text="Label" />
+                  <Rectangle fill="#fff4de" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
+                  <Label fx:id="CCreatureName1" text="Label">
+                     <font>
+                        <Font name="Pokemon Pixel Font Regular" size="25.0" />
+                     </font></Label>
                </children>
             </StackPane>
          </children>
       </VBox>
-      <VBox layoutX="620.0" layoutY="626.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" styleClass="vbox">
+      <VBox layoutX="620.0" layoutY="595.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="250.0" styleClass="vbox">
          <children>
-            <ImageView fx:id="CCreatureImage2" fitHeight="196.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="CCreatureImage2" fitHeight="196.0" fitWidth="250.0" pickOnBounds="true" />
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Rectangle fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
-                  <Label fx:id="CCreatureName2" text="Label" />
+                  <Rectangle fill="#fff4de" height="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
+                  <Label fx:id="CCreatureName2" text="Label">
+                     <font>
+                        <Font name="Pokemon Pixel Font Regular" size="25.0" />
+                     </font></Label>
                </children>
             </StackPane>
          </children>
       </VBox>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="250.0" layoutX="923.0" layoutY="310.0" stroke="BLACK" strokeType="INSIDE" width="350.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="250.0" layoutX="923.0" layoutY="626.0" stroke="BLACK" strokeType="INSIDE" width="350.0" />
-      <Text fx:id="CCurrentType" layoutX="960.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
-      <Text fx:id="CCurrentFamily" layoutX="960.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family" />
-      <Text fx:id="CCurrentEvolutionLevel" layoutX="960.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evolution Level:" />
-      <Text layoutX="1060.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffdd23" height="250.0" layoutX="923.0" layoutY="279.0" stroke="BLACK" strokeType="INSIDE" width="350.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffdd23" height="250.0" layoutX="923.0" layoutY="595.0" stroke="BLACK" strokeType="INSIDE" width="350.0" />
+      <Text fx:id="CCurrentType" layoutX="1074.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
          <font>
-            <Font size="20.0" />
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Text layoutX="960.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family:">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Text layoutX="960.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evolution Level:">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Text layoutX="1055.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="30.0" />
          </font>
       </Text>
-      <Text layoutX="1060.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected">
+      <Text layoutX="1055.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected">
          <font>
-            <Font size="20.0" />
+            <Font name="Pokemon Pixel Font Regular" size="30.0" />
          </font>
       </Text>
-      <Text fx:id="CSelectedType" layoutX="960.0" layoutY="697.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" />
-      <Text fx:id="CSelectedFamily" layoutX="960.0" layoutY="753.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family:" />
-      <Text fx:id="CSelectedEvolutionLevel" layoutX="960.0" layoutY="811.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evolution Level:" />
-      <Button fx:id="CSwapCreature" layoutX="893.0" layoutY="936.0" mnemonicParsing="false" onAction="#swapCreature" prefHeight="42.0" prefWidth="120.0" styleClass="swapButton" text="Swap" />
+      <Text layoutX="960.0" layoutY="666.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Text layoutX="960.0" layoutY="722.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family:">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Text layoutX="960.0" layoutY="780.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evolution Level:">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Button fx:id="CSwapCreature" layoutX="1040.0" layoutY="898.0" mnemonicParsing="false" onMouseClicked="#swapCreature" prefHeight="42.0" prefWidth="120.0" styleClass="swapButton" text="Swap">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="25.0" />
+         </font></Button>
+      <Text layoutX="961.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Text fx:id="CCurrentFamily" layoutX="1074.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Text fx:id="CCurrentEvolutionLevel" layoutX="1074.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evolution Level">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Text fx:id="CSelectedType" layoutX="1071.0" layoutY="666.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Text fx:id="CSelectedFamily" layoutX="1071.0" layoutY="722.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Family">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Text fx:id="CSelectedEvolutionLevel" layoutX="1071.0" layoutY="780.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evolution Level">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="20.0" />
+         </font></Text>
+      <Button fx:id="backButton" layoutX="681.0" layoutY="898.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="35.0" prefWidth="136.0" text="Go Back">
+         <font>
+            <Font name="Pokemon Pixel Font Regular" size="25.0" />
+         </font></Button>
    </children>
 </AnchorPane>

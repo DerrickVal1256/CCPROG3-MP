@@ -13,7 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 
@@ -22,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class InventoryViewController implements Initializable {
     private Player CPlayer = new Player();
+    private PlayerData CPlayerDataHolder = PlayerData.getPlayerData();
     @FXML
     private ChoiceBox<String> CCreatureChoiceBox;
     @FXML
@@ -46,66 +49,97 @@ public class InventoryViewController implements Initializable {
     private Text CSelectedEvolutionLevel;
     @FXML
     private Button CSwapCreature;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        PlayerData CPlayerDataHolder = PlayerData.getPlayerData();
-        Player CPlayer = CPlayerDataHolder.getPlayer();
+        this.CPlayerDataHolder = PlayerData.getPlayerData();
+        this.CPlayer = CPlayerDataHolder.getPlayer();
         CPlayer.getPlayerInventory().printInventory();
         this.getCurrent(CPlayer);
-        for (CreatureEvo1 CCreatures : CPlayer.getPlayerInventory().getCreatures()) {
-            if(!CCreatures.getStatus()) {
-                String tempName = CCreatures.getName();
-                CCreatureChoiceBox.getItems().add(tempName);
+        this.displayCreatures();
+        CCreatureChoiceBox.setOnAction(this::getCurrentSelected);
+    }
+
+        private void displayCreatures(){
+            for (CreatureEvo1 CCreatures : CPlayer.getPlayerInventory().getCreatures()) {
+                if (!CCreatures.getStatus()){
+                    String tempName = CCreatures.getName();
+                    CCreatureChoiceBox.getItems().add(tempName);
+                }
             }
         }
-        CCreatureChoiceBox.setOnAction(this::getSelected);
+        @FXML
+        private void getCurrentSelected(ActionEvent event) {
+            String strChoice = CCreatureChoiceBox.getValue();
 
-    }
+            if (strChoice != null) {
+                CreatureEvo1 temp = CPlayer.getPlayerInventory().getSpecificCreature(strChoice);
 
-    @FXML
-    private void getSelected(ActionEvent event) {
-        String choice = CCreatureChoiceBox.getValue();
-        CreatureEvo1 temp = CPlayer.getPlayerInventory().getSpecificCreature(choice);
-        String selectedType = temp.getType();
-        char selectedFamily = temp.getFamily();
-        int selectedLevel = temp.getLevel();
-
-        CCreatureName2.setText(choice);
-        //CCreatureImage2.setImage(new Image(choice + ".png"));
-        CSelectedType.setText(selectedType);
-        CSelectedFamily.setText(String.valueOf(selectedFamily));
-        CSelectedEvolutionLevel.setText(String.valueOf(selectedLevel));
-    }
-
-    @FXML
-    private void getCurrent(Player CPlayer) {
-        String currentName = CPlayer.getPlayerInventory().getActive().getName();
-        String currentType = CPlayer.getPlayerInventory().getActive().getType();
-        char currentFamily = CPlayer.getPlayerInventory().getActive().getFamily();
-        int currentLevel = CPlayer.getPlayerInventory().getActive().getLevel();
-
-        CCreatureName1.setText(currentName);
-        //CCreatureImage1.setImage(new Image(currentName + ".png"));
-        CCurrentType.setText(currentType);
-        CCurrentFamily.setText(String.valueOf(currentFamily));
-        CCurrentEvolutionLevel.setText(String.valueOf(currentLevel));
-        CCurrentEvolutionLevel.setText(String.valueOf(currentLevel));
-    }
-
-    @FXML
-    private void swapCreature(ActionEvent event) {
-       CPlayer.getPlayerInventory().swapCreatures(CCreatureChoiceBox.getValue());
-            try {
-                Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewAndController/InventoryView.fxml")); // change to Main Menu View
-                Scene CScene = new Scene(CRoot);
-                Node CNode = (Node) event.getSource();
-                Stage CStage = (Stage) CNode.getScene().getWindow();
-
-                CStage.setScene(CScene);
-                CStage.show();
-            } catch (Exception error) {
-                error.printStackTrace();
+                if (temp != null) {
+                    this.CCreatureName2.setText(temp.getName());
+                    this.CSelectedType.setText(temp.getType());
+                    CCreatureImage2.setImage(new Image(getClass().getResource("../images/Creatures/" + temp.getName() + ".png").toExternalForm()));
+                    this.CSelectedFamily.setText(String.valueOf(temp.getFamily()));
+                    this.CSelectedEvolutionLevel.setText(String.valueOf(temp.getLevel()));
+                    CCreatureChoiceBox.setOnAction(this::getCurrentSelected);
+                 }
             }
         }
+
+        @FXML
+        private void getCurrent(Player CPlayer) {
+            String currentName = CPlayer.getPlayerInventory().getActive().getName();
+            String currentType = CPlayer.getPlayerInventory().getActive().getType();
+            char currentFamily = CPlayer.getPlayerInventory().getActive().getFamily();
+            int currentLevel = CPlayer.getPlayerInventory().getActive().getLevel();
+
+            CCreatureName1.setText(currentName);
+            CCreatureImage1.setImage(new Image(getClass().getResource("../images/Creatures/" + currentName + ".png").toExternalForm()));
+            CCurrentType.setText(currentType);
+            CCurrentFamily.setText(String.valueOf(currentFamily));
+            CCurrentEvolutionLevel.setText(String.valueOf(currentLevel));
+            CCurrentEvolutionLevel.setText(String.valueOf(currentLevel));
+        }
+
+        @FXML
+        private void swapCreature(MouseEvent event) {
+          String strSelectedCreatureName = CCreatureChoiceBox.getValue();
+          int ntempID = CPlayer.getPlayerInventory().getSpecificCreature(strSelectedCreatureName).getUniqueID();
+          CPlayer.getPlayerInventory().activeCreature(strSelectedCreatureName, ntempID);
+
+          try {
+              Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/InventoryView.fxml"));
+              Scene CScene = new Scene(CRoot);
+              Node CNode = (Node) event.getSource();
+              Stage CStage = (Stage) CNode.getScene().getWindow();
+
+              this.CPlayerDataHolder.setPlayer(this.CPlayer);
+              CPlayer.getPlayerInventory().printInventory();
+              this.getCurrent(CPlayer);
+              this.displayCreatures();
+
+              CStage.setScene(CScene);
+              CStage.show();
+
+              CCreatureChoiceBox.setValue(strSelectedCreatureName);
+          } catch (Exception error) {
+              error.printStackTrace();
+          }
+      }
+
+    @FXML
+    private void backButtonPressed(ActionEvent event) {
+        try {
+            Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/MainMenuView.fxml")); // change to Main Menu View
+            Scene CScene = new Scene(CRoot);
+            Node CNode = (Node) event.getSource();
+            Stage CStage = (Stage) CNode.getScene().getWindow();
+
+            CStage.setScene(CScene);
+            CStage.show();
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
     }
+}
 

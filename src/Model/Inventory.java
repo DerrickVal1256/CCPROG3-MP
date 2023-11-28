@@ -14,6 +14,16 @@ public class Inventory {
         this.aInventoryList = new ArrayList<>();
     }
 
+    public CreatureEvo1 getNextInstanceOfCreature(String strCreatureName) {
+        ArrayList<CreatureEvo1> aTemp = new ArrayList<>();
+        for(CreatureEvo1 CCreature : this.aInventoryList) {
+            if(CCreature.getName().equals(strCreatureName)) {
+                aTemp.add(CCreature);
+            }
+        }
+        return aTemp.get(aTemp.size() - 1);
+    }
+
     public CreatureEvo1 getSpecificCreature(String strCreatureName) {
         for(CreatureEvo1 CCreature : this.aInventoryList) {
             if(CCreature.getName().equals(strCreatureName)) {
@@ -36,17 +46,16 @@ public class Inventory {
         return false;
     }
 
-    /**
-     * Sets a creature in the inventory to active.
-     * @param nInput The index of the creature to activate.
-     */
-    public void activeCreature(String strCreatureName){
-        int i = 0;
-        while(!(aInventoryList.get(i).getName().equals(strCreatureName))){
-            i++;
-            if(aInventoryList.get(i).getName().equals(strCreatureName)){
-                getActive().setStatus(false);
+
+    public void activeCreature(String strCreatureName, int nUniqueID) {
+        boolean bSetActive = false;
+        for(int i = 0; i < aInventoryList.size(); i++) {
+            if(aInventoryList.get(i).getName().equals(strCreatureName) && aInventoryList.get(i).getUniqueID() == nUniqueID) {
                 aInventoryList.get(i).setStatus(true);
+                System.out.println("Setting to true: " + aInventoryList.get(i));
+            } else if(aInventoryList.get(i).getStatus()) {
+                aInventoryList.get(i).setStatus(false);
+                System.out.println("Setting to false: " + aInventoryList.get(i));
             }
         }
     }
@@ -67,33 +76,32 @@ public class Inventory {
      * Swaps the currently active creature with another creature in the inventory.
      * @return true if the swap was successful, false otherwise.
      */
-    public boolean swapCreatures(String strCreatureName) {
-        if(!getSpecificCreature(strCreatureName).getStatus()){
-            activeCreature(strCreatureName);
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean swapCreatures(String strCreatureName) {
+//        if(!getSpecificCreature(strCreatureName).getStatus()){
+//            activeCreature(strCreatureName);
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     /**
      * Prints the creatures in the inventory.
      */
-    public void printInventory(){
+    public void printInventory() {
         int i = 1;
-        sortInventory();
-        System.out.println("\n\t\t\t\t     Inventory\n");
-        System.out.println("\t\t\t+----+------------+-------+-------+");
-        System.out.printf("\t\t\t| %-3s| %-10s | %-5s | %-5s |\n", "No.", "   Name", "Type", "Level");
-        System.out.println("\t\t\t+----+------------+-------+-------+");
+        System.out.println("\n\t\t\t\t    Inventory\n");
+        System.out.println("\t\t\t+----+------------+-------+-------+------------+");
+        System.out.printf("\t\t\t| %-3s| %-10s | %-5s | %-5s | %-10s |\n", "No.", "  Name", "Type", "Level", "Unique ID");
+        System.out.println("\t\t\t+----+------------+-------+-------+------------+");
         for (CreatureEvo1 CCreature : aInventoryList) {
-            if(CCreature.getStatus()){
-                System.out.printf("\t\t\t| %-1s. | %-10s | %-5s | %-5s | <--- Current \n" , i++, CCreature.getName(), CCreature.getType(), "  " + CCreature.getLevel());
+            if (CCreature.getStatus()) {
+                System.out.printf("\t\t\t| %-1s. | %-10s | %-5s | %-5s | %-10s | <--- Current \n", i++, CCreature.getName(), CCreature.getType(), " " + CCreature.getLevel(), CCreature.getUniqueID());
             } else {
-                System.out.printf("\t\t\t| %-1s. | %-10s | %-5s | %-5s | \n" , i++, CCreature.getName(), CCreature.getType(), "  " + CCreature.getLevel());
+                System.out.printf("\t\t\t| %-1s. | %-10s | %-5s | %-5s | %-10s | \n", i++, CCreature.getName(), CCreature.getType(), " " + CCreature.getLevel(), CCreature.getUniqueID());
             }
         }
-        System.out.println("\t\t\t+----+------------+-------+-------+");
+        System.out.println("\t\t\t+----+------------+-------+-------+------------+");
     }
 
     /**
@@ -112,5 +120,8 @@ public class Inventory {
         return this.aInventoryList;
     }
 
+    public boolean removeCreature(CreatureEvo1 CCreature){
+        return aInventoryList.remove(CCreature);
+    }
 
 }

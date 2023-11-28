@@ -11,12 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import java.util.*;
 
 public class AreaOneViewController {
 
@@ -24,18 +20,29 @@ public class AreaOneViewController {
     private ImageView CPlayerImageView;
 
     @FXML
-    private GridPane CGridPane;
+    private Text CAreaNum;
 
+    @FXML
+    public void initialize(int nRow, int nCol) {
+        GridPane.setRowIndex(this.CPlayerImageView, nRow);
+        GridPane.setColumnIndex(this.CPlayerImageView, nCol);
+    }
 
     @FXML
     private void leftButtonClicked(MouseEvent event) {
         int nCol = GridPane.getColumnIndex(this.CPlayerImageView);
         if(nCol > 0) {
             nCol--;
-            this.CGridPane.setColumnIndex(this.CPlayerImageView, nCol);
+            GridPane.setColumnIndex(this.CPlayerImageView, nCol);
             if(Area.creatureSpawning()) {
                 try {
-                    Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/BattleView.fxml"));
+                    FXMLLoader CLoader = new FXMLLoader(getClass().getResource("../ViewsAndControllers/BattleView.fxml"));
+                    Parent CRoot = CLoader.load();
+
+                    BattleViewController CBattleViewController = CLoader.getController();
+
+                    CBattleViewController.initialize(CAreaNum.getText(), 0, GridPane.getColumnIndex(this.CPlayerImageView));
+
                     Scene CScene = new Scene(CRoot);
                     Node CNode = (Node) event.getSource();
                     Stage CStage = (Stage) CNode.getScene().getWindow();
@@ -54,10 +61,15 @@ public class AreaOneViewController {
         int nCol = GridPane.getColumnIndex(this.CPlayerImageView);
         if(nCol < 5) {
             nCol++;
-            this.CGridPane.setColumnIndex(this.CPlayerImageView, nCol);
+            GridPane.setColumnIndex(this.CPlayerImageView, nCol);
             if(Area.creatureSpawning()) {
                 try {
-                    Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/BattleView.fxml"));
+                    FXMLLoader CLoader = new FXMLLoader(getClass().getResource("../ViewsAndControllers/BattleView.fxml"));
+                    Parent CRoot = CLoader.load();
+
+                    BattleViewController CBattleViewController = CLoader.getController();
+
+                    CBattleViewController.initialize(CAreaNum.getText(), 0, GridPane.getColumnIndex(this.CPlayerImageView));
                     Scene CScene = new Scene(CRoot);
                     Node CNode = (Node) event.getSource();
                     Stage CStage = (Stage) CNode.getScene().getWindow();
@@ -85,24 +97,4 @@ public class AreaOneViewController {
             error.printStackTrace();
         }
     }
-
-    public String randomCreature() throws IOException {
-        Random CRandom = new Random();
-        Reader CReader = new Reader(new FileReader("CreaturesList.txt"));
-        Set<String> mapKeys = new HashSet<String>();
-        int randomIndex = 0;
-        /*
-         * this is used to generate a list of creatures based on the area number
-         */
-        for (Map.Entry<String, CreatureEvo1> CEntry : CReader.creatureEvo1FileReader().entrySet()) {
-            CreatureEvo1 CCreature = CEntry.getValue();
-        }
-
-        String[] strKeys = mapKeys.toArray(new String[0]);
-
-        randomIndex = CRandom.nextInt(strKeys.length);
-
-        return strKeys[randomIndex];
-    }
-
 }

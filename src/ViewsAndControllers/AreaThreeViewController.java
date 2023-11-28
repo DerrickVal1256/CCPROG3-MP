@@ -1,5 +1,6 @@
 package ViewsAndControllers;
 
+import Model.Area;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class AreaThreeViewController {
@@ -16,6 +18,15 @@ public class AreaThreeViewController {
 
     @FXML
     private GridPane CGridPane;
+
+    @FXML
+    private Text CAreaNum;
+
+    @FXML
+    public void initialize(int nRow, int nCol) {
+        GridPane.setRowIndex(this.CPlayerImageView, nRow);
+        GridPane.setColumnIndex(this.CPlayerImageView, nCol);
+    }
 
     @FXML
     private void leftButtonClicked(MouseEvent event) {
@@ -34,6 +45,24 @@ public class AreaThreeViewController {
         if(nCol < 3) {
             nCol++;
             this.CGridPane.setColumnIndex(this.CPlayerImageView, nCol);
+            if(Area.creatureSpawning()) {
+                try {
+                    FXMLLoader CLoader = new FXMLLoader(getClass().getResource("../ViewsAndControllers/BattleView.fxml"));
+                    Parent CRoot = CLoader.load();
+
+                    BattleViewController CBattleViewController = CLoader.getController();
+
+                    CBattleViewController.initialize(CAreaNum.getText(), GridPane.getRowIndex(this.CPlayerImageView), GridPane.getColumnIndex(this.CPlayerImageView));
+                    Scene CScene = new Scene(CRoot);
+                    Node CNode = (Node) event.getSource();
+                    Stage CStage = (Stage) CNode.getScene().getWindow();
+
+                    CStage.setScene(CScene);
+                    CStage.show();
+                } catch (Exception error) {
+                    error.printStackTrace();
+                }
+            }
         }
     }
 
@@ -43,8 +72,24 @@ public class AreaThreeViewController {
         if(nRow > 0) {
             nRow--;
             this.CGridPane.setRowIndex(this.CPlayerImageView, nRow);
-            // chance of spawning
-            // once spawned change view to battle view
+            if(Area.creatureSpawning()) {
+                try {
+                    FXMLLoader CLoader = new FXMLLoader(getClass().getResource("../ViewsAndControllers/BattleView.fxml"));
+                    Parent CRoot = CLoader.load();
+
+                    BattleViewController CBattleViewController = CLoader.getController();
+
+                    CBattleViewController.initialize(CAreaNum.getText(), GridPane.getRowIndex(this.CPlayerImageView), GridPane.getColumnIndex(this.CPlayerImageView));
+                    Scene CScene = new Scene(CRoot);
+                    Node CNode = (Node) event.getSource();
+                    Stage CStage = (Stage) CNode.getScene().getWindow();
+
+                    CStage.setScene(CScene);
+                    CStage.show();
+                } catch (Exception error) {
+                    error.printStackTrace();
+                }
+            }
         }
     }
 
@@ -54,6 +99,24 @@ public class AreaThreeViewController {
         if(nRow < 3) {
             nRow++;
             this.CGridPane.setRowIndex(this.CPlayerImageView, nRow);
+            if(Area.creatureSpawning()) {
+                try {
+                    FXMLLoader CLoader = new FXMLLoader(getClass().getResource("../ViewsAndControllers/BattleView.fxml"));
+                    Parent CRoot = CLoader.load();
+
+                    BattleViewController CBattleViewController = CLoader.getController();
+
+                    CBattleViewController.initialize(CAreaNum.getText(), GridPane.getRowIndex(this.CPlayerImageView), GridPane.getColumnIndex(this.CPlayerImageView));
+                    Scene CScene = new Scene(CRoot);
+                    Node CNode = (Node) event.getSource();
+                    Stage CStage = (Stage) CNode.getScene().getWindow();
+
+                    CStage.setScene(CScene);
+                    CStage.show();
+                } catch (Exception error) {
+                    error.printStackTrace();
+                }
+            }
         }
     }
 

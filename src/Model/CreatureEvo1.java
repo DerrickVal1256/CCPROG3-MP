@@ -11,6 +11,7 @@ public class CreatureEvo1 {
     protected char cFamily;
     protected int nEvoLevel;
     protected boolean bState;
+    protected int nUniqueID;
 
     /**
     * Constructs a new, empty Creatures instance.
@@ -21,6 +22,7 @@ public class CreatureEvo1 {
         this.cFamily = cFamily;
         this.nEvoLevel = nEvoLevel;
         this.bState = false;
+        this.nUniqueID = 0;
     }
 
     /**
@@ -33,7 +35,8 @@ public class CreatureEvo1 {
         return  '{' +
                 strName + ", " +
                 strType + ", " +
-                nEvoLevel +
+                nEvoLevel + ", " +
+                bState +
                 '}';
     }
 
@@ -117,4 +120,10 @@ public class CreatureEvo1 {
         return this.bState;
     }
 
+    public int getUniqueID(){
+        return this.nUniqueID;
+    }
+    public void setID(int nID){
+        this.nUniqueID = nID;
+    }
 }

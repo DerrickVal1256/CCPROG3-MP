@@ -53,7 +53,7 @@ public class GameController {
     private void eventPickStarter(int nStarterNum) {
         this.setScene(CGameView.getStarterCreatureView().starterAdded(CGameModel.pickStarter(nStarterNum)));
         this.sleep(1);
-        this.CGameModel.getSound().play("PkmRS_Littleroot.wav");
+        this.CGameModel.getSound().play("PkmRS_Littleroot.wav", -1);
         this.setScene(CGameView.getMainMenuView().mainMenu());
     }
 
