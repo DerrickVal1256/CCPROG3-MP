@@ -2,6 +2,7 @@ package ViewsAndControllers;
 
 import Model.Player;
 import Model.PlayerData;
+import Model.Sound;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -2,8 +2,6 @@ package ViewsAndControllers;
 
 import Model.CreatureEvo1;
 
-import Model.Player;
-import Model.PlayerData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

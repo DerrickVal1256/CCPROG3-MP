@@ -163,7 +163,15 @@ public class BattleViewController {
             this.CHPBarOne.setVisible(false);
         }
 
-        if(this.CBattlePhase.getMoves() == 0  || this.CBattlePhase.getEnemyHP() <= 0) {
+        if(this.CBattlePhase.getEnemyHP() <= 0) {
+            Sound CSound = Sound.getInstance();
+            CSound.play("enemyfallen.mp3", 1);
+            this.returnToAreaView(event);
+        }
+
+        if(this.CBattlePhase.getMoves() == 0) {
+            Sound CSound = Sound.getInstance();
+            CSound.play("PkmRS_Littleroot.wav", 1);
             this.returnToAreaView(event);
         }
     }

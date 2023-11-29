@@ -2,6 +2,7 @@ package ViewsAndControllers;
 
 import Model.Player;
 import Model.PlayerData;
+import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +28,9 @@ public class IntroViewController {
             PlayerData CPlayerDataHolder = PlayerData.getPlayerData();
 
             CPlayerDataHolder.setPlayer(CPlayer);
+
+            Sound CSound = Sound.getInstance();
+            CSound.play("PkmRS_Littleroot.wav", -1);
 
             Scene CScene = new Scene(CRoot);
             CStage.setScene(CScene);

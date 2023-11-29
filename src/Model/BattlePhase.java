@@ -54,6 +54,9 @@ public class BattlePhase {
             this.nEnemyHP -= nDamage;
         }
         this.nMoves--;
+        if(this.nMoves == 0) {
+            this.CSound.play("running_away_sound.mp3", 1);
+        }
         return nDamage;
     }
 
@@ -62,7 +65,6 @@ public class BattlePhase {
         int nRandomNum = this.CRandom.nextInt(10) + 1;
         int nID = 1;
         if(nRandomNum < dCatchRate) {
-            this.CSound.stop();
             this.CSound.play("successful_catch.wav", 1);
             for(CreatureEvo1 CCreature : CPlayer.getPlayerInventory().getCreatures()) {
                     this.CEnemyCreature.setID(nID);
@@ -72,7 +74,9 @@ public class BattlePhase {
             return true;
         } else {
             this.nMoves--;
-            System.out.println("\n\t-- Failed to capture " + this.CEnemyCreature.getName() + " --\n");
+            if(this.nMoves == 0) {
+                this.CSound.play("running_away_sound.mp3", 1);
+            }
             return false;
         }
     }

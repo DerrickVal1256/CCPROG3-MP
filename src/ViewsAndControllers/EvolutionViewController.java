@@ -1,9 +1,6 @@
 package ViewsAndControllers;
 
-import Model.Evolution;
-import Model.CreatureEvo1;
-import Model.Player;
-import Model.PlayerData;
+import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -114,6 +111,8 @@ public class EvolutionViewController implements Initializable {
         CreatureEvo1 CTemp1 = CPlayer.getPlayerInventory().getSpecificCreature(selectCreature1.getValue());
         CreatureEvo1 CTemp2 = CPlayer.getPlayerInventory().getNextInstanceOfCreature(selectCreature2.getValue());
         if(CEvolve.evolve(this.CPlayer, CTemp1, CTemp2)) {
+            Sound CSound = Sound.getInstance();
+            CSound.play("evolve.mp3", 1);
             PlayerData CPlayerDataHolder = PlayerData.getPlayerData();
             CPlayerDataHolder.setPlayer(this.CPlayer); 
             CreatureEvo1 evolvedTemp = CPlayer.getPlayerInventory().getCreatures().get(CPlayer.getPlayerInventory().getCreatures().size()-1);

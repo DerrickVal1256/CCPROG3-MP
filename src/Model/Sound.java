@@ -4,6 +4,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
+import java.util.Objects;
 
 /**
  * This class is responsible for playing sound effects in the game.
@@ -31,7 +32,7 @@ public class Sound {
      * @param nCycleCount The number of cycles to play the sound (use -1 for indefinite).
      */
     public void play(String strFileName, int nCycleCount) {
-        String strPath = getClass().getResource(strFileName).getPath();
+        String strPath = Objects.requireNonNull(getClass().getResource(strFileName)).getPath();
         Media media = new Media(new File(strPath).toURI().toString());
 
         if (mediaPlayer != null) {

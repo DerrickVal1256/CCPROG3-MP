@@ -1,8 +1,7 @@
 package ViewsAndControllers;
 
 import Model.Area;
-import Model.CreatureEvo1;
-import Model.Reader;
+import Model.Sound;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,10 +21,13 @@ public class AreaOneViewController {
     @FXML
     private Text CAreaNum;
 
+    private Sound CSound;
+
     @FXML
     public void initialize(int nRow, int nCol) {
         GridPane.setRowIndex(this.CPlayerImageView, nRow);
         GridPane.setColumnIndex(this.CPlayerImageView, nCol);
+        this.CSound = Sound.getInstance();
     }
 
     @FXML
@@ -36,6 +38,8 @@ public class AreaOneViewController {
             GridPane.setColumnIndex(this.CPlayerImageView, nCol);
             if(Area.creatureSpawning()) {
                 try {
+                    this.CSound = Sound.getInstance();
+                    this.CSound.play("battle_phase.mp3", -1);
                     FXMLLoader CLoader = new FXMLLoader(getClass().getResource("../ViewsAndControllers/BattleView.fxml"));
                     Parent CRoot = CLoader.load();
 
@@ -64,6 +68,8 @@ public class AreaOneViewController {
             GridPane.setColumnIndex(this.CPlayerImageView, nCol);
             if(Area.creatureSpawning()) {
                 try {
+                    this.CSound = Sound.getInstance();
+                    this.CSound.play("battle_phase.mp3", -1);
                     FXMLLoader CLoader = new FXMLLoader(getClass().getResource("../ViewsAndControllers/BattleView.fxml"));
                     Parent CRoot = CLoader.load();
 
@@ -86,6 +92,8 @@ public class AreaOneViewController {
     @FXML
     private void exitButtonClicked(MouseEvent event) {
         try {
+            this.CSound = Sound.getInstance();
+            this.CSound.play("PkmRS_Littleroot.wav", -1);
             Parent CRoot = FXMLLoader.load(getClass().getResource("../ViewsAndControllers/MainMenuView.fxml"));
             Scene CScene = new Scene(CRoot);
             Node CNode = (Node) event.getSource();

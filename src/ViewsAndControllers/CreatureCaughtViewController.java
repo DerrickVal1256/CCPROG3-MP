@@ -1,6 +1,7 @@
 package ViewsAndControllers;
 
 import Model.CreatureEvo1;
+import Model.Sound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +40,9 @@ public class CreatureCaughtViewController {
             Scene CScene = new Scene(CRoot);
             Node CNode = (Node) event.getSource();
             Stage CStage = (Stage) CNode.getScene().getWindow();
+
+            Sound CSound = Sound.getInstance();
+            CSound.play("PkmRS_Littleroot.wav", -1);
 
             CStage.setScene(CScene);
             CStage.show();
